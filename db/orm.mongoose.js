@@ -24,6 +24,7 @@ async function registerUser( userData ){
         email: saveUser.email,
         name: saveUser.name 
     }
+}
 
     async function loginUser( email, password ){
         const userData = await db.user.findOne({ email: email });
@@ -42,7 +43,7 @@ async function registerUser( userData ){
     };
 }
 
-}
+
 
 
 module.exports = { 
