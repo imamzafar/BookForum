@@ -1,11 +1,22 @@
-import React from 'react'
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
-function walk() {
-    return (
-        <div>
-            
-        </div>
-    )
-}
+let walk = new Schema ({
+    userId: {type: String},
+    user: {
+        name:{ type: String },
+        id: { type: String },
+    },
+    title: String,
+    message: String,
+    comment: [
+        {
+            content: { type: String },
+            userId: { type: String },
+            userName: {type: String}
+        }
+    ],
+    timestamps: true 
+});
 
-export default walk
+module.exports = mongoose.model('walk', walk);

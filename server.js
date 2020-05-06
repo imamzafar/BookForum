@@ -25,3 +25,10 @@ app.post('/api/user/login', async function(req, res){
     res.send( loginResult );
 })
 
+app.post('/api/newthread', async function(req, res){
+    const walkData = req.body;
+    console.log(walkData);
+    const threadResult = await orm.threadResult( walkData  );
+    res.send(threadResult);
+})
+

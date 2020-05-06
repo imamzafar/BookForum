@@ -16,6 +16,7 @@ async function registerUser( userData ){
         password: passwordHash
     };
 
+    //why new db.user
     const dbUser = new db.user( saveData )
     const saveUser = await dbUser.save();
     return{
@@ -43,10 +44,21 @@ async function registerUser( userData ){
     };
 }
 
+    async function threadResult( data ){
+
+        const walkData = {
+            title: data.title
+        }
+        
+        = new db.walk(data)
+
+}
+
 
 
 
 module.exports = { 
     loginUser,
-    registerUser
+    registerUser,
+    threadResult
 }

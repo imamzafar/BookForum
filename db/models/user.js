@@ -17,7 +17,14 @@ let user = new Schema ({
         type: String,
         required: true,
         trim: true
-    }
+    },
+    userThreadWalk: [
+        {
+           type: mongoose.Schema.Types.ObjectId,
+           ref: "walks"
+         }
+      ],
+    userCreated: {}
 })
 
 module.exports = mongoose.model('user', user);
