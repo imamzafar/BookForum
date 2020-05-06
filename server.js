@@ -27,8 +27,14 @@ app.post('/api/user/login', async function(req, res){
 
 app.post('/api/newthread', async function(req, res){
     const walkData = req.body;
-    console.log(walkData);
+    // console.log(walkData)
     const threadResult = await orm.threadResult( walkData  );
     res.send(threadResult);
+})
+
+app.get('/api/walkdata', async (req, res) => {
+    const getWalkData = await orm.getWalkData();
+    // console.log('the walk data is', getWalkData)
+    res.json(getWalkData);
 })
 

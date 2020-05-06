@@ -21,7 +21,7 @@ let user = new Schema ({
     userThreadWalk: [
         {
            type: mongoose.Schema.Types.ObjectId,
-           ref: "walks"
+           ref: "walk"
          }
       ],
     userCreated: {}

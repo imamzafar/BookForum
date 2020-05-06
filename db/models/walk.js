@@ -15,8 +15,7 @@ let walk = new Schema ({
             userId: { type: String },
             userName: {type: String}
         }
-    ],
-    timestamps: true 
+    ]
 });
 
 module.exports = mongoose.model('walk', walk);

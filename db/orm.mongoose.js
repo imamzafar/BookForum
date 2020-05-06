@@ -45,14 +45,26 @@ async function registerUser( userData ){
 }
 
     async function threadResult( data ){
-
+        // console.log(data);
         const walkData = {
-            title: data.title
+            userId: data.id,
+            title: data.data.title,
+            message: data.data.message
+        }      
+        const newData = new db.walk( walkData )
+        const saveData = await newData.save();
+        const updateUserWalksinUserSchema = await db.user.findByIdAndUpdate({_id:data.id}, {$push: {userThreadWalk: saveData._id}})
+        return{
+            message:"User successfully saved"
         }
-        
-        = new db.walk(data)
-
 }
+
+    async function getWalkData(){
+
+        const walkDataDb = await db.walk.find({}).sort({_id:1}).limit(20)
+        // console.log('the walkdata orm is', walkDataDb)
+        return walkDataDb;
+    }
 
 
 
@@ -60,5 +72,6 @@ async function registerUser( userData ){
 module.exports = { 
     loginUser,
     registerUser,
-    threadResult
+    threadResult,
+    getWalkData
 }
