@@ -48,6 +48,8 @@ async function registerUser( userData ){
         // console.log(data);
         const walkData = {
             userId: data.id,
+            user: {name:data.name, id:data.id },
+            slug: data.slug,
             title: data.data.title,
             message: data.data.message
         }      
@@ -61,7 +63,7 @@ async function registerUser( userData ){
 
     async function getWalkData(){
 
-        const walkDataDb = await db.walk.find({}).sort({_id:1}).limit(20)
+        const walkDataDb = await db.walk.find({}).sort({_id:-1}).limit(20)
         // console.log('the walkdata orm is', walkDataDb)
         return walkDataDb;
     }

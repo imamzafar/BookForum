@@ -9,6 +9,7 @@ let walk = new Schema ({
     },
     title: String,
     message: String,
+    slug: String,
     comment: [
         {
             content: { type: String },
@@ -16,6 +17,9 @@ let walk = new Schema ({
             userName: {type: String}
         }
     ]
-});
+},
+{
+    timestamps: true
+ });
 
 module.exports = mongoose.model('walk', walk);

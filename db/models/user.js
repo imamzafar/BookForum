@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 let user = new Schema ({
     name: {
         type: String,
-        trum: true,
+        trim: true,
         required: true
     },
     email : {
@@ -25,6 +25,8 @@ let user = new Schema ({
          }
       ],
     userCreated: {}
-})
+},{
+    timestamps: true
+ })
 
 module.exports = mongoose.model('user', user);
