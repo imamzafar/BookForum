@@ -76,11 +76,28 @@ async function registerUser( userData ){
         return getWalkPost;
     }
 
+    async function replyData(data){
+        console.log(data.post.reply);
+        console.log('the data is', data)
+       const postData = {
+           userId: data.userId,
+           user: { name: data.name},
+           message: data.post.reply,
+           postId: data.postId,
+       } 
+        const replyData = new db.reply( postData )
+        const saveData = await replyData.save();
+        // console.log(saveData);
+        return{
+            message: "post submited successfully!"
+        }
+    }
 
 module.exports = { 
     loginUser,
     registerUser,
     threadResult,
     getWalkData,
-    getWalkPost
+    getWalkPost,
+    replyData
 }

@@ -1,8 +1,10 @@
 import React, {useState, useEffect} from 'react'
 import { useLocation, useParams} from 'react-router-dom';
+import PostForm from './PostForm';
 
 function Posts() {
     const [ walkPost, setWalkPost ] = useState({});
+    const [ showForm, setShowForm ] = useState(false);
     let params = useParams();
     let{ handle }=useParams();
     // console.log(handle) // console.log(params)
@@ -15,6 +17,11 @@ function Posts() {
         const apiGetWalkPost = await fetch(`/api/walkpost/${postId}`).then( result => result.json() )
         // console.log(apiGetWalkPost)
         setWalkPost(apiGetWalkPost)
+    }
+
+    function submitForm(e){
+        e.preventDefault();
+        setShowForm(false);
     }
     console.log(walkPost)
     useEffect( function(){
@@ -45,7 +52,8 @@ function Posts() {
                             
                         </div>
                         <div class="col-10 mx-auto" style={{border: "1px solid #9f6934"}}>
-                            <button style={{display:"block"}}>Reply</button></div>
+                            <button onClick={() => setShowForm(true)} style={{display:"block"}}>Reply</button></div>
+                            { showForm ?  <PostForm submitForm={submitForm} walkPost={walkPost} /> : ''}
                     </div>    
                 </div>
             </div>

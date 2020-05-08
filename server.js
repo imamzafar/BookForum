@@ -45,3 +45,9 @@ app.get('/api/walkpost/:postId', async (req, res) => {
     res.json(getWalkPost);
 })
 
+app.post('/api/reply', async function(req, res){
+    const postData = req.body;
+    console.log(postData)
+    const replyData = await orm.replyData( postData );
+    res.send(replyData);
+})
