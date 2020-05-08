@@ -15,15 +15,11 @@ function TheWalks() {
     async function loadPage(){
         const apiGetWalk = await fetch('/api/walkdata').then( result => result.json() )
         console.log(apiGetWalk)
-        console.log(apiGetWalk[0].user.name)
-        console.log(apiGetWalk[0]._id)
-        setWalkResult( [...apiGetWalk] )
+        // console.log(apiGetWalk[0].user.name)
+        // console.log(apiGetWalk[0]._id)
+        setWalkResult(apiGetWalk)
     }
-   
-
-   
-
-    
+     
     useEffect( function(){
         loadPage();
     }, [] );

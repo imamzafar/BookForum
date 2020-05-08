@@ -41,6 +41,7 @@ async function registerUser( userData ){
         id: userData._id,
         name: userData.name,
         email: userData.email,
+        img: userData.img
     };
 }
 
@@ -62,18 +63,24 @@ async function registerUser( userData ){
 }
 
     async function getWalkData(){
-
         const walkDataDb = await db.walk.find({}).sort({_id:-1}).limit(20)
         // console.log('the walkdata orm is', walkDataDb)
         return walkDataDb;
+        // sort({_id:-1}).limit(20)
     }
 
-
+    async function getWalkPost(data){
+        // console.log(data)
+        const getWalkPost = await db.walk.findOne({ _id:data })
+        // console.log('the getwalkpost orm is', getWalkPost)
+        return getWalkPost;
+    }
 
 
 module.exports = { 
     loginUser,
     registerUser,
     threadResult,
-    getWalkData
+    getWalkData,
+    getWalkPost
 }

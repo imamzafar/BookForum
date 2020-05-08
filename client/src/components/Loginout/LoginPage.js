@@ -1,11 +1,14 @@
 import React, { useState, useRef } from "react";
 import { Redirect } from 'react-router-dom';
+export const UserContext = React.createContext();
 
 function LoginPage(){
     // DECLARATIVE FORM OF PROGRAMMING
     const [ userData, setUserData ] = useState({ name: "", email: localStorage.email, password: "", rememberMe: true });
     const [ isLoggedIn, setIsLoggedIn ] = useState( false );
     const [ alertMessage, setAlertMessage ] = useState( { type: "", message: ""} );
+    const [ img, setImg ] = useState( '' );
+    const [ name, setName ] = useState( '' );
 
     const inputEmail = useRef();
     const inputPassword = useRef();
@@ -43,7 +46,9 @@ function LoginPage(){
                 },
                 body: JSON.stringify(userData)
             }).then( result=>result.json())
-
+            console.log(apiResult)
+            setImg(apiResult.img);  
+            setName(apiResult.name);  
             localStorage.setItem("email", apiResult.email);
             localStorage.setItem('id', apiResult.id);
             localStorage.setItem('name', apiResult.name);
@@ -60,6 +65,12 @@ function LoginPage(){
     }
 
     return (
+        <div>
+        {/* <UserContext.Provider value ={{name, img}}>
+            <Router>
+                <Route exact path="/the-walks" component={TheWalks} />
+            </Router>
+        </UserContext.Provider> */}
         <div style={{color: "black"}}>
             { isLoggedIn ? <Redirect to='/' /> : '' }
 
@@ -103,6 +114,7 @@ function LoginPage(){
                 </div>
             </div>
         </div>
+    </div>
     )
 }
 

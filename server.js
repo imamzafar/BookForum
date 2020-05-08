@@ -38,3 +38,10 @@ app.get('/api/walkdata', async (req, res) => {
     res.json(getWalkData);
 })
 
+app.get('/api/walkpost/:postId', async (req, res) => {
+    const data = req.params.postId
+    // console.log('the postId data is', data)
+    const getWalkPost = await orm.getWalkPost(data);
+    res.json(getWalkPost);
+})
+
