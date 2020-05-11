@@ -1,9 +1,9 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 
 function PostForm(props) {
     // console.log(props)
-    const[ myPost, setMyPost] = useState( { reply:""} )
-
+    const[ myPost, setMyPost ] = useState( { reply:""} )
+        
     function updatePost(e){
         e.preventDefault();
         let post = { reply: e.target.value }
@@ -32,6 +32,7 @@ function PostForm(props) {
           }).then( result=>result.json())   
           console.log(apiReply)
          
+          props.loadpage();
     }
 
     // function handleCancel(e){

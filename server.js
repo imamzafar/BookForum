@@ -40,14 +40,21 @@ app.get('/api/walkdata', async (req, res) => {
 
 app.get('/api/walkpost/:postId', async (req, res) => {
     const data = req.params.postId
-    // console.log('the postId data is', data)
+    // console.log('the postId data is [server]', data)
     const getWalkPost = await orm.getWalkPost(data);
     res.json(getWalkPost);
 })
 
 app.post('/api/reply', async function(req, res){
     const postData = req.body;
-    console.log(postData)
+    // console.log(postData)
     const replyData = await orm.replyData( postData );
     res.send(replyData);
+})
+
+app.get('/api/replydata/:postId', async (req, res) => {
+    const data = req.params.postId;
+    const getReplyData = await orm.getReplyData(data);
+    // console.log('the postId data is [server]', data)
+    res.json(getReplyData);
 })

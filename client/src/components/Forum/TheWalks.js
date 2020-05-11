@@ -15,7 +15,7 @@ function TheWalks() {
     async function loadPage(){
         const apiGetWalk = await fetch('/api/walkdata').then( result => result.json() )
         console.log(apiGetWalk)
-        // console.log(apiGetWalk[0].user.name)
+        console.log(apiGetWalk[0].user.name)
         // console.log(apiGetWalk[0]._id)
         setWalkResult(apiGetWalk)
     }
@@ -25,7 +25,7 @@ function TheWalks() {
     }, [] );
 
     console.log(walkResult)
-    console.log(walkResult._id)
+    // console.log(walkResult._id)
     return (
         <div class="container-fluid">
             <div class="row">
@@ -78,7 +78,7 @@ function TheWalks() {
                                        
                                         <th style={{ width: "20%" }} >Replies</th>
                                         <th style={{ width: "20%" }} >Views</th>
-                                        <th style={{ width: "20%" }} >Last Message</th>
+                                        <th style={{ width: "20%" }} >Last Activity</th>
                                     </tr>
                                 </thead>
                                 { walkResult.length !== 0 ? walkResult.map( event => <tbody>
@@ -87,13 +87,13 @@ function TheWalks() {
                                                             state:{id: event._id},
                                                             id: event._id }}> 
                                         {event.title} </Link><br/>
-                                        name <br/>
+                                        Name<br/>
                                         {event.createdAt}  
                                          </td>
                                         
-                                        <td>john@example.com</td>
+                                        <td>{event.userReply.length}</td>
                                         <td>Doe</td>
-                                        <td>Doe</td>
+                                        <td>{event.updatedAt}</td>
                                     </tr>
                                 
                                 </tbody>) : ''}

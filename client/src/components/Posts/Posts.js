@@ -5,6 +5,8 @@ import PostForm from './PostForm';
 function Posts() {
     const [ walkPost, setWalkPost ] = useState({});
     const [ showForm, setShowForm ] = useState(false);
+    const[ replyResult, setReplyResult ] = useState( [] )
+    const[ numberReply, setNumberReply] = useState()
     let params = useParams();
     let{ handle }=useParams();
     // console.log(handle) // console.log(params)
@@ -17,16 +19,30 @@ function Posts() {
         const apiGetWalkPost = await fetch(`/api/walkpost/${postId}`).then( result => result.json() )
         // console.log(apiGetWalkPost)
         setWalkPost(apiGetWalkPost)
+
+        const apiGetReply = await fetch(`/api/replydata/${postId}`).then( result => result.json() )
+        setReplyResult(apiGetReply)
+        let replyArray = apiGetReply.length;
+        setNumberReply(replyArray);
+       
+
     }
+    console.log(replyResult);
+
 
     function submitForm(e){
         e.preventDefault();
         setShowForm(false);
     }
-    console.log(walkPost)
+    // console.log(walkPost)
     useEffect( function(){
         loadPage();
     }, [] );
+
+    function handleLike(){
+
+    }
+
 
     return (
         <div class="container-fluid">
@@ -43,20 +59,43 @@ function Posts() {
                             <div class="row">
                                 <div class="">
                                     <p>Post by:{walkPost.name}</p>
-                                    <small>{walkPost.createdAt}</small>
+                                    <small>{walkPost.createdAt}</small><br/>
+                                    <small>Replies:{numberReply}</small>
                                 </div>            
                             </div>
                             <div class="row mt-4">
                                 <p>{walkPost.message}</p>
                             </div>
+                            <div class="row mt-4">
+                                <button onclick={e =>{handleLike(postId)}}>Like</button>
+                            </div>
                             
                         </div>
                         <div class="col-10 mx-auto" style={{border: "1px solid #9f6934"}}>
                             <button onClick={() => setShowForm(true)} style={{display:"block"}}>Reply</button></div>
-                            { showForm ?  <PostForm submitForm={submitForm} walkPost={walkPost} /> : ''}
+                            { showForm ?  <PostForm submitForm={submitForm} walkPost={walkPost} loadPage={loadPage}/> : ''}
                     </div>    
-                </div>
+                </div>    
             </div>
+            <div class="row mt-4">
+                <div class="col-lg-12">
+                {replyResult.map( reply => <div class="row justify-content-center mb-2">
+                        <div class="col-lg-10" style={{background: "#9f6934", border:'1px solid #9f6934'}}>
+                            {reply.createdAt}
+                        </div>
+                        <div class="col-lg-10" style={{border:'1px solid #9f6934'}}>
+                            <div class="row">
+                                <div class="col-lg-6">{reply.user.name}</div>
+                                <div class="col-lg-4">User Details</div>
+                            </div>        
+                        </div>
+                        <div class="col-lg-10 mx-auto" style={{border:'1px solid #9f6934', }}>
+                            {reply.message}
+                        </div> 
+                    </div>)}
+                </div>    
+            </div>
+                        
         </div>    
     )
 }

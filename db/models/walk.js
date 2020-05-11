@@ -10,6 +10,12 @@ let walk = new Schema ({
     title: String,
     message: String,
     slug: String,
+    userReply: [
+        {
+           type: mongoose.Schema.Types.ObjectId,
+           ref: "reply"
+         }
+      ],
     comment: [
         {
             content: { type: String },

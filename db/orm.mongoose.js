@@ -77,8 +77,8 @@ async function registerUser( userData ){
     }
 
     async function replyData(data){
-        console.log(data.post.reply);
-        console.log('the data is', data)
+        // console.log(data.post.reply);
+        // console.log('the data is', data)
        const postData = {
            userId: data.userId,
            user: { name: data.name},
@@ -87,11 +87,21 @@ async function registerUser( userData ){
        } 
         const replyData = new db.reply( postData )
         const saveData = await replyData.save();
+
+        const updateUserReplyinWalkSchema = await db.walk.findByIdAndUpdate({_id:data.postId}, {$push: {userReply: saveData._id}}) 
         // console.log(saveData);
         return{
             message: "post submited successfully!"
         }
     }
+    async function getReplyData(data){
+        // console.log( 'the [orm] id is', data)
+        const replyDataDb = await db.reply.find({postId:data}).limit(20)
+        // console.log('the walkdata orm is', walkDataDb)
+        return replyDataDb;
+        // sort({_id:-1}).limit(20)
+    }
+
 
 module.exports = { 
     loginUser,
@@ -99,5 +109,6 @@ module.exports = {
     threadResult,
     getWalkData,
     getWalkPost,
-    replyData
+    replyData, 
+    getReplyData
 }
