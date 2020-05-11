@@ -102,6 +102,10 @@ async function registerUser( userData ){
         // sort({_id:-1}).limit(20)
     }
 
+    async function counterData(number, postId){
+        const counterDataDB = await db.walk.findByIdAndUpdate({_id:postid}), {$push: {likes: number}}
+    }
+
 
 module.exports = { 
     loginUser,
@@ -110,5 +114,6 @@ module.exports = {
     getWalkData,
     getWalkPost,
     replyData, 
-    getReplyData
+    getReplyData,
+    counterData
 }

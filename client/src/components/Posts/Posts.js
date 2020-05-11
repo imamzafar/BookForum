@@ -7,6 +7,9 @@ function Posts() {
     const [ showForm, setShowForm ] = useState(false);
     const[ replyResult, setReplyResult ] = useState( [] )
     const[ numberReply, setNumberReply] = useState()
+    const[ myLike, setMyLike ] = useState();
+    let counter;
+
     let params = useParams();
     let{ handle }=useParams();
     // console.log(handle) // console.log(params)
@@ -24,12 +27,11 @@ function Posts() {
         setReplyResult(apiGetReply)
         let replyArray = apiGetReply.length;
         setNumberReply(replyArray);
+        setMyLike(10);
        
 
     }
-    console.log(replyResult);
-
-
+    // console.log(replyResult);
     function submitForm(e){
         e.preventDefault();
         setShowForm(false);
@@ -39,10 +41,24 @@ function Posts() {
         loadPage();
     }, [] );
 
-    function handleLike(){
-
+    async function handleLike(e){
+        e.preventDefault();
+        counter = myLike
+        counter++;
+        setMyLike(counter)
+       
+        const apiReply = await fetch(`/api/counter/${postId}`, 
+            {   method: 'post',
+                headers: {
+                    'Accept': 'application/json, text/plain, */*',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(myLike)
+          }).then( result=>result.json())   
+          console.log(apiReply)
     }
-
+        
+    console.log(myLike)
 
     return (
         <div class="container-fluid">
@@ -67,7 +83,7 @@ function Posts() {
                                 <p>{walkPost.message}</p>
                             </div>
                             <div class="row mt-4">
-                                <button onclick={e =>{handleLike(postId)}}>Like</button>
+                                <button type="submit" onClick={e => {handleLike()}}>Like</button><span>{myLike}</span>
                             </div>
                             
                         </div>

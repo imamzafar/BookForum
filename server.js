@@ -58,3 +58,11 @@ app.get('/api/replydata/:postId', async (req, res) => {
     // console.log('the postId data is [server]', data)
     res.json(getReplyData);
 })
+
+app.post('/api/counter/:postId', async function(req, res){
+    const number = req.body;
+    const postId = req.body.params;
+    // console.log(postData)
+    const counterData = await orm.counter( number, postId  );
+    res.send(counterData);
+})
