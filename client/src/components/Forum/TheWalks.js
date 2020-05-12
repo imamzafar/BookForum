@@ -49,26 +49,7 @@ function TheWalks() {
                     </div>    
 
                 </div>
-                <div class="col-lg-10 mx-auto mt-4"  >
-                    
-                    {/* <div class="row">
-                        <div class="col-lg-4">
-                            <h4 style={{paddingTop: "10px", paddingLeft: "15px", color:"white"}}>Title</h4>
-                        </div>
-                        <div class="col-lg-2">
-                            <h4 style={{paddingTop: "10px", paddingLeft: "15px", color:"white"}}>Start Date</h4>
-                        </div>
-                        <div class="col-lg-2">
-                            <h4 style={{paddingTop: "10px", paddingLeft: "15px", color:"white"}}>Replies</h4>
-                        </div>
-                        <div class="col-lg-1">
-                            <h4 style={{paddingTop: "10px", paddingLeft: "15px", color:"white"}}>Views</h4>
-                        </div>
-                        <div class="col-lg-3">
-                            <h4 style={{paddingTop: "10px", paddingLeft: "15px", color:"white"}}>Last Message</h4>
-                        </div>
-                    </div> */}
-                        
+                <div class="col-lg-10 mx-auto mt-4"  >                      
                          <div>
                         
                             <table class="table table-sm">

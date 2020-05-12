@@ -32,7 +32,7 @@ function PostForm(props) {
           }).then( result=>result.json())   
           console.log(apiReply)
          
-          props.loadpage();
+          props.loadPage();
     }
 
     // function handleCancel(e){

@@ -1,14 +1,17 @@
 import React, {useState, useEffect} from 'react'
 import { useLocation, useParams} from 'react-router-dom';
 import PostForm from './PostForm';
+import ReplyForm from './ReplyForm';
 
 function Posts() {
     const [ walkPost, setWalkPost ] = useState({});
     const [ showForm, setShowForm ] = useState(false);
+    const [ replyForm, setReplyForm ] = useState(false);
     const[ replyResult, setReplyResult ] = useState( [] )
     const[ numberReply, setNumberReply] = useState()
     const[ myLike, setMyLike ] = useState();
-    let counter;
+    const[ creationDate, setCreationDate] = useState([])
+   
 
     let params = useParams();
     let{ handle }=useParams();
@@ -27,21 +30,31 @@ function Posts() {
         setReplyResult(apiGetReply)
         let replyArray = apiGetReply.length;
         setNumberReply(replyArray);   
-        setMyLike(apiGetWalkPost.likes);   
+        setMyLike(apiGetWalkPost.likes);  
+        
+        const createdDate = apiGetReply.map( item => {
+            return item.createdAt
+        })
+        setCreationDate(createdDate)
     }
-    // console.log(replyResult);
+ 
     function submitForm(e){
         e.preventDefault();
         setShowForm(false);
     }
-    // console.log(walkPost)
+    
+    function submitReply(e){
+        e.preventDefault();
+        setReplyForm(false);
+    }
+
     useEffect( function(){
         loadPage();
     }, [] );
 
     async function handleLike(e){
         e.preventDefault(); 
-        counter = myLike
+        let counter = myLike
         counter++;
         setMyLike(counter)
        
@@ -57,11 +70,10 @@ function Posts() {
                 },
                 body: JSON.stringify(likeData)
           }).then( result=>result.json())   
-          console.log(apiLike)
+        //   console.log(apiLike)
     }
-        
-    console.log(myLike)
 
+   
     return (
         <div class="container-fluid">
             <div class="row">
@@ -110,7 +122,13 @@ function Posts() {
                         <div class="col-lg-10 mx-auto" style={{border:'1px solid #9f6934', }}>
                             {reply.message}
                         </div> 
+                        <div class="col-lg-10 mx-auto" >
+                            <button type="submit" onClick={() => setReplyForm(true)}>Reply</button>
+                            {replyForm ? <ReplyForm submitReply={submitReply} replyResult={replyResult} loadPage={loadPage}/> : ''}
+                        </div>
+                       
                     </div>)}
+             
                 </div>    
             </div>
                         
