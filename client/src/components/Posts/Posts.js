@@ -26,10 +26,8 @@ function Posts() {
         const apiGetReply = await fetch(`/api/replydata/${postId}`).then( result => result.json() )
         setReplyResult(apiGetReply)
         let replyArray = apiGetReply.length;
-        setNumberReply(replyArray);
-        setMyLike(10);
-       
-
+        setNumberReply(replyArray);   
+        setMyLike(apiGetWalkPost.likes);   
     }
     // console.log(replyResult);
     function submitForm(e){
@@ -42,20 +40,24 @@ function Posts() {
     }, [] );
 
     async function handleLike(e){
-        e.preventDefault();
+        e.preventDefault(); 
         counter = myLike
         counter++;
         setMyLike(counter)
        
-        const apiReply = await fetch(`/api/counter/${postId}`, 
+        const likeData = {
+            likes : counter
+        }
+       
+        const apiLike = await fetch(`/api/counter/${postId}`, 
             {   method: 'post',
                 headers: {
                     'Accept': 'application/json, text/plain, */*',
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(myLike)
+                body: JSON.stringify(likeData)
           }).then( result=>result.json())   
-          console.log(apiReply)
+          console.log(apiLike)
     }
         
     console.log(myLike)
@@ -83,7 +85,7 @@ function Posts() {
                                 <p>{walkPost.message}</p>
                             </div>
                             <div class="row mt-4">
-                                <button type="submit" onClick={e => {handleLike()}}>Like</button><span>{myLike}</span>
+                                <button type="submit" onClick={e => {handleLike(e)}}>Like</button><span>{myLike}</span>
                             </div>
                             
                         </div>
