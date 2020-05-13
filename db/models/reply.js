@@ -9,7 +9,11 @@ let reply = new Schema ({
         id: { type: String },
     },
     message: {type: String},
-    
+    comment:{
+        postcomment:{type: String },
+        commenterId:{type: String},
+        commenterName:{type: String},
+    }
 },
 {
     timestamps: true

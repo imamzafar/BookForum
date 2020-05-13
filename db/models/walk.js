@@ -23,7 +23,7 @@ let walk = new Schema ({
             userName: {type: String}
         }
     ],
-    likes: {type:Number}
+    likes: Number,
 },
 {
     timestamps: true

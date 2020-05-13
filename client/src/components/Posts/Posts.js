@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { useLocation, useParams} from 'react-router-dom';
 import PostForm from './PostForm';
-import ReplyForm from './ReplyForm';
+import CommentForm from './CommentForm';
 
 function Posts() {
     const [ walkPost, setWalkPost ] = useState({});
@@ -10,48 +10,49 @@ function Posts() {
     const[ replyResult, setReplyResult ] = useState( [] )
     const[ numberReply, setNumberReply] = useState()
     const[ myLike, setMyLike ] = useState();
-    const[ creationDate, setCreationDate] = useState([])
    
-
     let params = useParams();
     let{ handle }=useParams();
     // console.log(handle) // console.log(params)
     let location = useLocation();
-    // console.log(location); // 
-    // console.log(location.state.id)
     let postId = location.state.id;
 
     async function loadPage(){
+        //get the main post of the page
         const apiGetWalkPost = await fetch(`/api/walkpost/${postId}`).then( result => result.json() )
         // console.log(apiGetWalkPost)
         setWalkPost(apiGetWalkPost)
 
+        //get replies for the post
         const apiGetReply = await fetch(`/api/replydata/${postId}`).then( result => result.json() )
         setReplyResult(apiGetReply)
         let replyArray = apiGetReply.length;
         setNumberReply(replyArray);   
-        setMyLike(apiGetWalkPost.likes);  
-        
-        const createdDate = apiGetReply.map( item => {
-            return item.createdAt
-        })
-        setCreationDate(createdDate)
+        setMyLike(apiGetWalkPost.likes);     
     }
- 
+ console.log(replyResult)
+    //submitForm for the Post reply
     function submitForm(e){
         e.preventDefault();
         setShowForm(false);
     }
     
-    function submitReply(e){
+    //submit form for the comments
+    function addBtnReply(e, idx){
         e.preventDefault();
-        setReplyForm(false);
+        setReplyForm({id: idx, state: true});
+    }
+
+    function submitReply(e, idx){
+        e.preventDefault();
+        setReplyForm({id: idx, state: false});
     }
 
     useEffect( function(){
         loadPage();
     }, [] );
 
+    //likes counter
     async function handleLike(e){
         e.preventDefault(); 
         let counter = myLike
@@ -61,7 +62,7 @@ function Posts() {
         const likeData = {
             likes : counter
         }
-       
+       //post likes data in the db
         const apiLike = await fetch(`/api/counter/${postId}`, 
             {   method: 'post',
                 headers: {
@@ -109,7 +110,7 @@ function Posts() {
             </div>
             <div class="row mt-4">
                 <div class="col-lg-12">
-                {replyResult.map( reply => <div class="row justify-content-center mb-2">
+                {replyResult.map( (reply, idx) => <div class="row justify-content-center mb-2">
                         <div class="col-lg-10" style={{background: "#9f6934", border:'1px solid #9f6934'}}>
                             {reply.createdAt}
                         </div>
@@ -123,8 +124,8 @@ function Posts() {
                             {reply.message}
                         </div> 
                         <div class="col-lg-10 mx-auto" >
-                            <button type="submit" onClick={() => setReplyForm(true)}>Reply</button>
-                            {replyForm ? <ReplyForm submitReply={submitReply} replyResult={replyResult} loadPage={loadPage}/> : ''}
+                            <button type="submit" id={idx} onClick={e => addBtnReply(e, idx)}>Reply</button>
+                            { replyForm.id == idx && replyForm.state ? <CommentForm submitReply={submitReply} idx={idx} reply={reply} loadPage={loadPage}/> : ''}
                         </div>
                        
                     </div>)}

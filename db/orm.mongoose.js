@@ -76,6 +76,7 @@ async function registerUser( userData ){
         return getWalkPost;
     }
 
+    //post replies to post/thread
     async function replyData(data){
         // console.log(data.post.reply);
         // console.log('the data is', data)
@@ -94,6 +95,8 @@ async function registerUser( userData ){
             message: "post submited successfully!"
         }
     }
+
+    //get replies from 
     async function getReplyData(data){
         // console.log( 'the [orm] id is', data)
         const replyDataDb = await db.reply.find({postId:data}).limit(20)
@@ -102,10 +105,32 @@ async function registerUser( userData ){
         // sort({_id:-1}).limit(20)
     }
 
+    //updates likes in the model in reply
     async function counterData(number, postId){
-        const counterDataDB = await db.walk.findByIdAndUpdate({_id:postid}), {$push: {likes: number}}
+        // console.log('the [orm number] is', number)
+        const num = number.likes;
+        const counterDataDB = await db.walk.findByIdAndUpdate({_id:postId}, {likes: num})
+        return {
+            message: "likes updated successfuly!"
+        }
     }
 
+    async function commentResult(data){
+        // console.log(data.post.reply);
+        console.log('the [commentResult ORM] data is', data)
+        console.log('the reply id is', data.replyId)
+        console.log('the post id is', data.postId)
+       const commentData = {
+            commenterId:data.userId,
+            commenterName: data.name,
+            postcomment: data.comment
+       } 
+
+        const postCommentToReply = await db.reply.findOneAndUpdate({ $and: [{_id:data.replyId}, {postId:data.postId}] }, {$push: {comment: commentData}}) 
+        return{
+            message: "post submited successfully!"
+        }
+    }
 
 module.exports = { 
     loginUser,
@@ -115,5 +140,6 @@ module.exports = {
     getWalkPost,
     replyData, 
     getReplyData,
-    counterData
+    counterData,
+    commentResult
 }
