@@ -41,13 +41,14 @@ function CommentForm(props) {
         
           //load page after the post submitted to db
           props.loadPage();
+         
     }
 
     return (
         <div>
              <form>
                
-                <input type="text" name="" id="message" value={addReply.comment} onChange={updateThread} placeholder="Your Message" size="40"></input><br/>
+                <textarea type="text" name="" id="message" value={addReply.comment} onChange={updateThread} placeholder="Your Message" cols="60" rows="5"></textarea><br/>
                 
                 <button class="btn myBtnPink" type="submit" onClick={handleSubmit}>Add</button>  
             </form>

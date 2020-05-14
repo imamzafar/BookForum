@@ -45,9 +45,9 @@ function PostForm(props) {
             {/* <div class={ alertMessage.type ? `alert alert-${alertMessage.type}` : `d-hide`} role="alert">
                 {alertMessage.message}
             </div> */}
-             <form>
+             <form class="mt-2">
                 
-                <input type="text" name="" id="message" value={myPost.reply} onChange={updatePost} placeholder="Your Message" size="60"></input><br/>
+                <textarea type="textarea" name="" id="message" value={myPost.reply} onChange={updatePost} placeholder="Your Message" cols="70" rows="5" ></textarea><br/>
                 
                 <button type="submit" onClick={handleSubmit}>Submit</button>  
                 {/* <button type="submit" onClick={e => handleCancel}>Cancel</button>  */}

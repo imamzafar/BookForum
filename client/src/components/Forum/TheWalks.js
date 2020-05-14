@@ -15,7 +15,7 @@ function TheWalks() {
     async function loadPage(){
         const apiGetWalk = await fetch('/api/walkdata').then( result => result.json() )
         console.log(apiGetWalk)
-        console.log(apiGetWalk[0].user.name)
+        // console.log(apiGetWalk[0].user.name)
         // console.log(apiGetWalk[0]._id)
         setWalkResult(apiGetWalk)
     }
@@ -64,7 +64,8 @@ function TheWalks() {
                                 </thead>
                                 { walkResult.length !== 0 ? walkResult.map( event => <tbody>
                                     <tr style={{ height: '80px', border: "3px solid #9f6934" }}>
-                                        <td><Link to={{ pathname: `/the-walks/${event.slug}`,
+                                        <td key={event._id}>
+                                            <Link to={{ pathname: `/the-walks/${event.slug}`,
                                                             state:{id: event._id},
                                                             id: event._id }}> 
                                         {event.title} </Link><br/>
