@@ -20,7 +20,7 @@ function CommentForm(props) {
         e.preventDefault();
         props.submitReply(e, props.idx);
 
-        
+        if( addReply.comment != ''){
         let commentData = {
             postId:postId,
             userId:localStorage.id,
@@ -41,7 +41,13 @@ function CommentForm(props) {
         
           //load page after the post submitted to db
           props.loadPage();
-         
+        }
+        else {
+            alert('message the comment is empty')
+        }     
+    }
+    function handleCancel(e){
+        props.submitReply(e) 
     }
 
     return (
@@ -50,7 +56,8 @@ function CommentForm(props) {
                
                 <textarea type="text" name="" id="message" value={addReply.comment} onChange={updateThread} placeholder="Your Message" cols="60" rows="5"></textarea><br/>
                 
-                <button class="btn myBtnPink" type="submit" onClick={handleSubmit}>Add</button>  
+                <button class="btn myBtnPink" type="submit" onClick={handleSubmit}>Add</button> 
+                <button class="btn myBtnPink" type="submit" onClick={handleCancel}>Cancel</button> 
             </form>
         </div>
     )

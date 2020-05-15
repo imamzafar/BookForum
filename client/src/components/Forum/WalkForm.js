@@ -24,6 +24,8 @@ function WalkForm(props) {
         props.submitThread(e)
         let url = myThread.title
         let newURL = url.trim().replace(/\s/g , "-").replace(/\'/g, "");
+
+        if (myThread.message != ''){
         let walkData = {
             id : localStorage.id,
             data : myThread,
@@ -49,6 +51,13 @@ function WalkForm(props) {
             setTimeout( function(){ setAlertMessage({}); }, 1000 );
           }
           props.loadPage();
+        } else {
+            alert( 'message is empty ')
+        }  
+    }
+
+    function handleCancel(e){
+        props.submitThread(e) 
     }
 
 
@@ -62,6 +71,7 @@ function WalkForm(props) {
                 <input type="text" name="" id="message" value={myThread.message} onChange={updateThread} placeholder="Your Message" size="40"></input><br/>
                 
                 <button class="btn myBtnPink" type="submit" onClick={handleSubmit}>Add</button>  
+                <button class="btn myBtnPink" type="submit" onClick={handleCancel}>Cancel</button>
             </form>
         </div>
     )

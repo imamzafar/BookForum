@@ -16,6 +16,8 @@ function PostForm(props) {
         props.submitForm(e);    
         let userId = localStorage.id;
 
+        if( myPost.reply != ''){
+
         let postData = {
             name: localStorage.name,
             postId: props.walkPost._id,
@@ -34,8 +36,16 @@ function PostForm(props) {
           console.log(apiReply)
          
           props.loadPage();
+        }
+        else{
+            alert('reply is empty')
+        }  
     }
 
+    function handleCancel(e){
+        console.log('i am cancel button')
+        props.submitForm(e);  
+    }
     // function handleCancel(e){
     //     e.preventDefault();
     //     props.submitForm();
@@ -51,6 +61,7 @@ function PostForm(props) {
                 <textarea type="textarea" name="" id="message" value={myPost.reply} onChange={updatePost} placeholder="Your Message" cols="70" rows="5" ></textarea><br/>
                 
                 <button type="submit" onClick={handleSubmit}>Submit</button>  
+                <button type="submit" onClick={handleCancel}>Cancel</button>
                 {/* <button type="submit" onClick={e => handleCancel}>Cancel</button>  */}
             </form>
         </div>
