@@ -9,12 +9,12 @@ function WalkForm(props) {
     function updateThread(e){
         e.preventDefault();
        let id = e.target.id;
-       console.log(id)
+    //    console.log(id)
        let value = e.target.value;
-       console.log(value)
+    //    console.log(value)
        //spread the operator and insert the values
         let newThread =  ({ ...myThread, [id] : value})
-        console.log( newThread );
+        // console.log( newThread );
       
        setMyThread(newThread)
     }

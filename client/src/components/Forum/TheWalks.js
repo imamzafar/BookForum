@@ -39,8 +39,8 @@ function TheWalks() {
                 </div>
                 <div class="col-lg-10 mx-auto justify-content-end" style={{border:"1px solid black"}}>
                     <div class="row justify-content-end">
-                        <button onClick={function(){localStorage.points > 5 ? setShowForm(true) : setShowForm(false); alert('Not enough points to start a new thread')}}>New Thread</button>
-                        {/* <button onClick={function(){setShowForm(true) }}>New Thread</button> */}
+                        {/* <button onClick={function(){localStorage.points > 5 ? setShowForm(true) : setShowForm(false); alert('Not enough points to start a new thread')}}>New Thread</button> */}
+                        <button onClick={function(){setShowForm(true) }}>New Thread</button>
                         {showForm ? <WalkForm submitThread = {submitThread} loadPage= {loadPage}/> : ''}
                     </div>
                 </div>

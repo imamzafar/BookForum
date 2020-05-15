@@ -19,6 +19,7 @@ async function registerUser( userData ){
     //why new db.user
     const dbUser = new db.user( saveData )
     const saveUser = await dbUser.save();
+    
     return{
         message: "User successfully saved", 
         id: saveUser._id,
@@ -48,6 +49,7 @@ async function registerUser( userData ){
     };
 }
 
+//create new walk scheemaco
     async function threadResult( data ){
         // console.log(data);
         const walkData = {
@@ -59,22 +61,28 @@ async function registerUser( userData ){
         }      
         const newData = new db.walk( walkData )
         const saveData = await newData.save();
+        let walkId = saveData._id
+        // console.log(walkId)
         const updateUserWalksinUserSchema = await db.user.findByIdAndUpdate({_id:data.id}, {$push: {userThreadWalk: saveData._id}})
+        const updateUserDatainWalkSchema = await db.walk.findByIdAndUpdate({_id:walkId}, {$push: {userInfo: data.id}})
         return{
             message:"User successfully saved"
         }
 }
 
     async function getWalkData(){
-        const walkDataDb = await db.walk.find({}).sort({_id:-1}).limit(20)
-        // console.log('the walkdata orm is', walkDataDb)
+        const walkDataDb = await db.walk.find({})
+                                .sort({_id:-1})
+                                .limit(20)
+                                .populate('userInfo', 'points userType')
+                               
         return walkDataDb;
         // sort({_id:-1}).limit(20)
     }
 
     async function getWalkPost(data){
         // console.log(data)
-        const getWalkPost = await db.walk.findOne({ _id:data })
+        const getWalkPost = await db.walk.findOne({ _id:data }).populate('userInfo', 'points userType')
         // console.log('the getwalkpost orm is', getWalkPost)
         return getWalkPost;
     }
@@ -91,9 +99,10 @@ async function registerUser( userData ){
        } 
         const replyData = new db.reply( postData )
         const saveData = await replyData.save();
-
+        let replyId = saveData._id
         const updateUserReplyinWalkSchema = await db.walk.findByIdAndUpdate({_id:data.postId}, {$push: {userReply: saveData._id}}) 
         // console.log(saveData);
+        const updateUserDatainReplySchema = await db.reply.findOneAndUpdate({_id:replyId}, {$push: {userInfo: data.UserId}})
         return{
             message: "post submited successfully!"
         }
@@ -102,7 +111,7 @@ async function registerUser( userData ){
     //get replies from 
     async function getReplyData(data){
         // console.log( 'the [orm] id is', data)
-        const replyDataDb = await db.reply.find({postId:data}).limit(20)
+        const replyDataDb = await db.reply.find({postId:data}).limit(20).populate('userInfo', 'points userType')
         // console.log('the walkdata orm is', walkDataDb)
         return replyDataDb;
         // sort({_id:-1}).limit(20)

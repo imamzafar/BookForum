@@ -16,6 +16,12 @@ let walk = new Schema ({
            ref: "reply"
          }
       ],
+    userInfo: [
+        {
+           type: mongoose.Schema.Types.ObjectId,
+           ref: "user"
+         }
+    ],  
     comment: [
         {
             content: { type: String },
