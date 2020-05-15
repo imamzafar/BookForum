@@ -2,11 +2,11 @@ import React, {useState} from 'react'
 
 function CommentForm(props) {
     const[ addReply, setAddReply] = useState({comment:''})
-    console.log(props.reply)
-    console.log(props.reply._id)
+    // console.log(props.reply)
+    // console.log(props.reply._id)
     let replyId = props.reply._id;
     let postId = props.reply.postId;
-    console.log(replyId, postId)
+    // console.log(replyId, postId)
 
     async function updateThread(e){
         e.preventDefault();
@@ -14,7 +14,7 @@ function CommentForm(props) {
         console.log(userComment);
         setAddReply({comment: userComment})
     }
-    console.log(addReply);
+    // console.log(addReply);
 
     async function handleSubmit(e){
         e.preventDefault();

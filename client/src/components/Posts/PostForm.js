@@ -14,11 +14,12 @@ function PostForm(props) {
     async function handleSubmit(e){   
         e.preventDefault();
         props.submitForm(e);    
+        let userId = localStorage.id;
 
         let postData = {
-            name: props.walkPost.user.name,
+            name: localStorage.name,
             postId: props.walkPost._id,
-            userId: props.walkPost.userId,
+            userId: localStorage.id,
             post: myPost
         }
             

@@ -49,7 +49,7 @@ async function registerUser( userData ){
     };
 }
 
-//create new walk scheemaco
+//create new walk scheema
     async function threadResult( data ){
         // console.log(data);
         const walkData = {
@@ -65,6 +65,8 @@ async function registerUser( userData ){
         // console.log(walkId)
         const updateUserWalksinUserSchema = await db.user.findByIdAndUpdate({_id:data.id}, {$push: {userThreadWalk: saveData._id}})
         const updateUserDatainWalkSchema = await db.walk.findByIdAndUpdate({_id:walkId}, {$push: {userInfo: data.id}})
+        const postPoints = await db.user.findByIdAndUpdate({_id:data.id}, {$inc: {points: 5 }})
+        
         return{
             message:"User successfully saved"
         }
@@ -103,6 +105,8 @@ async function registerUser( userData ){
         const updateUserReplyinWalkSchema = await db.walk.findByIdAndUpdate({_id:data.postId}, {$push: {userReply: saveData._id}}) 
         // console.log(saveData);
         const updateUserDatainReplySchema = await db.reply.findOneAndUpdate({_id:replyId}, {$push: {userInfo: data.UserId}})
+        const replyPoints = await db.user.findByIdAndUpdate({_id:data.userId}, {$inc: {points: 1 }})
+
         return{
             message: "post submited successfully!"
         }

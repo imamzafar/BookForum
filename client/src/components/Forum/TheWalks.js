@@ -28,11 +28,12 @@ function TheWalks() {
         let result = walkResult.find( ele => ele.userId === id)
         console.log('the result is', result)
         console.log( result.userInfo[0].points)
-        if( result.userInfo[0].points > 5){
-            setShowForm( true );
-        } else{
-            alert('not enough points to start a thread')
-        }
+        setShowForm( true );
+        // if( result.userInfo[0].points > 5){
+        //     setShowForm( true );
+        // } else{
+        //     alert('not enough points to start a thread')
+        // }
         
     }
      
