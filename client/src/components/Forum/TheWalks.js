@@ -7,6 +7,7 @@ function TheWalks() {
     const[showForm, setShowForm] = useState(false);
     const [ walkResult, setWalkResult ] = useState([])
    
+    
 
     function submitThread(e){
         e.preventDefault();
@@ -20,12 +21,26 @@ function TheWalks() {
         // console.log(apiGetWalk[0]._id)
         setWalkResult(apiGetWalk)
     }
+
+    function handleSubmit(e){
+        e.preventDefault();
+        let id = localStorage.id;
+        let result = walkResult.find( ele => ele.userId === id)
+        console.log('the result is', result)
+        console.log( result.userInfo[0].points)
+        if( result.userInfo[0].points > 5){
+            setShowForm( true );
+        } else{
+            alert('not enough points to start a thread')
+        }
+        
+    }
      
     useEffect( function(){
         loadPage();
     }, [] );
 
-    console.log(walkResult)
+    // console.log(walkResult)
     // console.log(walkResult._id)
     return (
         <div class="container-fluid">
@@ -40,7 +55,7 @@ function TheWalks() {
                 <div class="col-lg-10 mx-auto justify-content-end" style={{border:"1px solid black"}}>
                     <div class="row justify-content-end">
                         {/* <button onClick={function(){localStorage.points > 5 ? setShowForm(true) : setShowForm(false); alert('Not enough points to start a new thread')}}>New Thread</button> */}
-                        <button onClick={function(){setShowForm(true) }}>New Thread</button>
+                        <button onClick={handleSubmit}>New Thread</button>
                         {showForm ? <WalkForm submitThread = {submitThread} loadPage= {loadPage}/> : ''}
                     </div>
                 </div>

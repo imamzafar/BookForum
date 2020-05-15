@@ -33,7 +33,7 @@ function Posts(props) {
         setMyName(apiGetWalkPost.user.name)
         //get replies for the post
         const apiGetReply = await fetch(`/api/replydata/${postId}`).then( result => result.json() )
-        console.log([apiGetReply[0].comment])
+        // console.log([apiGetReply[0].comment])
         setReplyResult(apiGetReply)
         let replyArray = apiGetReply.length;
         setNumberReply(replyArray);   
