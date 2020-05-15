@@ -3,7 +3,7 @@ import { useLocation, useParams} from 'react-router-dom';
 import PostForm from './PostForm';
 import CommentForm from './CommentForm';
 
-function Posts() {
+function Posts(props) {
     const [ walkPost, setWalkPost ] = useState({});
     const [ showForm, setShowForm ] = useState(false);
     const [ replyForm, setReplyForm ] = useState(false);
@@ -18,25 +18,28 @@ function Posts() {
     }
    
     let params = useParams();
-    let{ handle }=useParams();
-    // console.log(handle) // console.log(params)
+    let{ name }=useParams();
+    // console.log(name) // console.log(params)
+   
     let location = useLocation();
+    // console.log(location) / console.log(props.location.myCustomProps)
     let postId = location.state.id;
 
     async function loadPage(){
         //get the main post of the page
         const apiGetWalkPost = await fetch(`/api/walkpost/${postId}`).then( result => result.json() )
-        // console.log(apiGetWalkPost)
+        // console.log(apiGetWalkPost[0].comment)
         setWalkPost(apiGetWalkPost)
         setMyName(apiGetWalkPost.user.name)
         //get replies for the post
         const apiGetReply = await fetch(`/api/replydata/${postId}`).then( result => result.json() )
+        console.log([apiGetReply[0].comment])
         setReplyResult(apiGetReply)
         let replyArray = apiGetReply.length;
         setNumberReply(replyArray);   
         setMyLike(apiGetWalkPost.likes);     
     }
- console.log(replyResult)
+ console.log('the reply result is',replyResult)
     //submitForm for the Post reply
     function submitForm(e){
         setShowForm(false);
@@ -121,7 +124,7 @@ function Posts() {
             </div>
             <div class="row mt-4">
                 <div class="col-lg-12">
-                {replyResult.map( (reply, idx) => <div class="row justify-content-center">
+                {replyResult.length !== 0 ? replyResult.map( (reply, idx) => <div class="row justify-content-center">
                         <div class="col-lg-10" style={{border:'2px solid #9f6934'}}>
                             {reply.createdAt}
                         </div>
@@ -144,7 +147,7 @@ function Posts() {
                                 </div>
                             </div>    
                         </div>
-                    </div>)}
+                    </div> ) : ''}
              
                 </div>    
             </div>

@@ -27,7 +27,24 @@ let user = new Schema ({
     img: {
         type: String,
         default: 'https://getdrawings.com/free-icon-bw/anonymous-avatar-icon-19.png'  
+    },
+    userType:{
+        type: String,
+        default: 'user'
     },  
+    startDate:{
+        type: Date,
+        default: Date.now
+    },
+    startDateA:{
+        type: Date,
+        default: () => Date.now() 
+    },
+    created: Date,
+    points:{
+        type:Number,
+        default: 0
+    },
     userCreated: {}
 },{
     timestamps: true

@@ -14,7 +14,7 @@ import TheWalks from './components/Forum/TheWalks';
 import Yapping from './components/Forum/Yapping';
 import CoolPics from './components/Forum/CoolPics';
 import Posts from './components/Posts/Posts';
-
+import Admin from './components/Admin/Admin';
 
 function App() {
   let id = localStorage.id;
@@ -24,8 +24,8 @@ function App() {
         <Navbar />
         <div className="container-fluid" style={{minHeight: "80vh", padding: "0"}}>
           <Route exact path={["/", "/homepage"]} component={Homepage} />
-          <Route exact path={["/forum"]} component={ForumHome} />
-          <Route exact path={["/Search"]} component={Search} />
+          <Route exact path={"/forum"} component={ForumHome} />
+          <Route exact path="/Search" component={Search} />
           <Route exact path="/registration" component={Registration} />
           <Route exact path="/login" component={LoginPage} />
           <Route exact path="/logout" component={LogoutPage} />
@@ -33,7 +33,9 @@ function App() {
           <Route exact path="/the-walks" component={TheWalks} />
           <Route exact path="/yapping" component={Yapping} />
           <Route exact path="/treats" component={CoolPics} />
-          <Route exact path="/the-walks/:handle" component={Posts} />
+          <Route exact path="/the-walks/:name" component={Posts} />
+          <Route exact path="/admin" component={Admin} />
+          {/* <Route exact path="/the-walks/:id" component={Posts} /> */}
         </div>
         <Footer />
 

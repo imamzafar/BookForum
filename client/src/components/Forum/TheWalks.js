@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from 'react'
 import WalkForm from './WalkForm';
-import { Link, useParams} from 'react-router-dom';
+import { Link, useParams, useLocation} from 'react-router-dom';
 
 function TheWalks() {
+    const location = useLocation();
     const[showForm, setShowForm] = useState(false);
     const [ walkResult, setWalkResult ] = useState([])
    
@@ -66,8 +67,9 @@ function TheWalks() {
                                     <tr style={{ height: '80px', border: "3px solid #9f6934" }}>
                                         <td key={event._id}>
                                             <Link to={{ pathname: `/the-walks/${event.slug}`,
-                                                            state:{id: event._id},
-                                                            id: event._id }}> 
+                                                            state:{id: event._id}
+                                                            
+                                                            }}> 
                                         {event.title} </Link><br/>
                                         Name<br/>
                                         {event.createdAt}  
