@@ -7,9 +7,10 @@ function Posts(props) {
     const [ walkPost, setWalkPost ] = useState({});
     const [ showForm, setShowForm ] = useState(false);
     const [ replyForm, setReplyForm ] = useState(false);
+    const [ editForm, setEditForm ] = useState(false);
     const[ replyResult, setReplyResult ] = useState( [] )
     const[ numberReply, setNumberReply] = useState()
-    const[ myLike, setMyLike ] = useState()
+    const[ myLike, setMyLike ] = useState('')
     const[ myName, setMyName ] = useState('');
     const pageStyle = {
         mainPost: {boxShadow: "5px 3px #9E9E9E", border: "1px solid #9f6934", background: "#90ee90"},
@@ -39,6 +40,7 @@ function Posts(props) {
         setNumberReply(replyArray);   
         setMyLike(apiGetWalkPost.likes);     
     }
+    console.log(walkPost);
  console.log('the reply result is',replyResult)
     //submitForm for the Post reply
     function submitForm(e){
@@ -48,8 +50,15 @@ function Posts(props) {
     
     //submit form for the comments
     function addBtnReply(e, idx){
-        setReplyForm({id: idx, state: true});
         e.preventDefault();
+        if(localStorage.id){
+            setReplyForm({id: idx, state: true});
+        } else 
+        {
+            setReplyForm({id: '', state: false});
+        }
+        
+       
     }
 
     function submitReply(e, idx){
@@ -79,8 +88,27 @@ function Posts(props) {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(likeData)
-          }).then( result=>result.json())   
+          }).then( result=>result.json());  
         //   console.log(apiLike)
+    }
+
+    function deleteBtnPost(e, idx){
+        let id = e.target.id; 
+        console.log(id)
+        if(localStorage.id == id){
+            console.log('do the api call')
+        }
+        
+    }
+
+    function editBtnPost(e, idx){
+        let id = e.target.id;
+        if(localStorage.id == id){
+            setEditForm({id: idx, state: true});
+        }else{
+            setEditForm({id: '', state: false});
+        }
+       
     }
 
    
@@ -114,11 +142,31 @@ function Posts(props) {
                                 </div>     
                             </div>
                         </div>
-                        <div class="col-10 mx-auto mt-2" style={{border: "1px solid #9f6934"}}>
+                        <div  class="col-lg-10 mt-2" >
+                            <div class="row justify-content-start">
+                                <div class="col-lg-1">
+                                    <button style={pageStyle.btn} type="submit" onClick={e => {handleLike(e)}}><i class="fas fa-thumbs-up"></i><span class="pl-2">{myLike}</span></button>
+                                </div>
+                                <div class="col-lg-1">
+                                    <button onClick={function () { localStorage.id ? setShowForm(true) : setShowForm(false)}} style={pageStyle.mainBtn}>Reply</button>
+                                    { showForm ?  <PostForm submitForm={submitForm} walkPost={walkPost} loadPage={loadPage}/> : ''}
+                                </div>
+                                <div class="col-lg-1">
+                                    { localStorage.id === walkPost.userId || localStorage.type === 'modertor' ? <button onClick={() => setShowForm(true)} style={pageStyle.mainBtn}>Edit</button> : '' }
+                                </div>
+                                <div class="col-lg-1">
+                                    { localStorage.id === walkPost.userId || localStorage.type === 'admin'? <button onClick={() => setShowForm(false)} style={pageStyle.mainBtn}>Delete</button> : ''}
+                                </div>
+                            </div>
+
+                        </div>
+                        {/* <div class="col-10 mx-auto mt-2" style={{border: "1px solid #9f6934"}}>
                             <button style={pageStyle.btn} type="submit" onClick={e => {handleLike(e)}}><i class="fas fa-thumbs-up"></i><span class="pl-2">{myLike}</span></button>
                             <button onClick={() => setShowForm(true)} style={pageStyle.mainBtn}>Reply</button>
                             { showForm ?  <PostForm submitForm={submitForm} walkPost={walkPost} loadPage={loadPage}/> : ''}
-                        </div>    
+                            <button onClick={() => setShowForm(true)} style={pageStyle.mainBtn}>Edit</button>
+                            <button onClick={() => setShowForm(false)} style={pageStyle.mainBtn}>Delete</button>
+                        </div>     */}
                     </div>    
                 </div>    
             </div>
@@ -143,6 +191,8 @@ function Posts(props) {
                                     <div class="row justify-content-end">
                                         <button class="pr-4" type="submit" id={idx} onClick={e => addBtnReply(e, idx)} style={pageStyle.btn}>Reply</button><br/>
                                         { replyForm.id == idx && replyForm.state ? <CommentForm submitReply={submitReply} idx={idx} reply={reply} loadPage={loadPage}/> : ''}
+                                        <button class="pr-4" type="submit" id={reply.userId} onClick={e => editBtnPost(e, idx)} style={pageStyle.btn}>Edit</button><br/>
+                                        <button class="pr-4" type="submit" id={reply.userId} onClick={e => deleteBtnPost(e, idx)} style={pageStyle.btn}>Delete</button> <br/>
                                     </div>
                                 </div>
                             </div>    
