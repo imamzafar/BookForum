@@ -34,11 +34,7 @@ let user = new Schema ({
     },  
     startDate:{
         type: Date,
-        default: Date.now
-    },
-    startDateA:{
-        type: Date,
-        default: () => Date.now() 
+        default: () => Date.now()
     },
     created: Date,
     points:{

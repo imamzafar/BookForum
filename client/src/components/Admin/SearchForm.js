@@ -3,7 +3,7 @@ import React from 'react'
 function SearchForm(props) {
     return (
         <div>
-            <form>
+            {/* <form>
                 <div class="input-group">
                     <input onChange={handleInputChange} value={searchInput} type="text" class="form-control" placeholder="Search your breed"/>
                     <div class="input-group-append">
@@ -16,7 +16,7 @@ function SearchForm(props) {
                         { showList.map( breed =><li class="list-group-item" onClick={()=>setFormValue(breed)}>{breed}</li> )}
                     </ul>
                 </div>
-            </form>     
+            </form>      */}
             
         </div>
     )

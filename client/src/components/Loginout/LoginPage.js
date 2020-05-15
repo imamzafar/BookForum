@@ -46,12 +46,14 @@ function LoginPage(){
                 },
                 body: JSON.stringify(userData)
             }).then( result=>result.json())
-            console.log(apiResult)
+            // console.log(apiResult)
             setImg(apiResult.img);  
             setName(apiResult.name);  
             localStorage.setItem("email", apiResult.email);
             localStorage.setItem('id', apiResult.id);
             localStorage.setItem('name', apiResult.name);
+            localStorage.setItem('points', apiResult.points)
+            localStorage.setItem('type', apiResult.type)
                   
         if( !apiResult.message ){
             setAlertMessage( { type: 'danger', message: apiResult.error } );

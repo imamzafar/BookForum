@@ -36,12 +36,15 @@ async function registerUser( userData ){
         if( !isValidPassword ) {
         return { error: "Invalid password" };
     }
+    // console.log(userData)
     return {
         message: "user successfully loggedin",
         id: userData._id,
         name: userData.name,
         email: userData.email,
-        img: userData.img
+        img: userData.img,
+        points: userData.points,
+        type:userData.userType
     };
 }
 
