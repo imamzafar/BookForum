@@ -89,4 +89,6 @@ app.get('/api/users', async (req, res) => {
     const getUsers = await orm.getUsers();
     // console.log('the walk data is', getWalkData)
     res.json(getUsers);
+    let date = new Date(getUsers[0].startDate).toString().substring(4, 15)
+    console.log(date)
 })

@@ -38,17 +38,13 @@ let user = new Schema ({
         type: String,
         default: 'user'
     },  
-    startDate:{
-        type: Date,
-        default: () => Date.now()
-    },
-    created: Date,
     points:{
         type:Number,
         default: 0
     },
-    userCreated: {}
-},{
+    lastActiveAt: Date
+},
+    {
     timestamps: true
  })
 
