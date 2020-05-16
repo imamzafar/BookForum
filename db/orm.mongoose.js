@@ -148,6 +148,14 @@ async function registerUser( userData ){
         }
     }
 
+    //get user data from the db
+    async function getUsers(){
+        // console.log(data)
+        const getUsersData = await db.user.find({})
+        // console.log('the [getusersData] orm is', getUsersData)
+        return getUsersData;
+    }
+
 module.exports = { 
     loginUser,
     registerUser,
@@ -157,5 +165,6 @@ module.exports = {
     replyData, 
     getReplyData,
     counterData,
-    commentResult
+    commentResult,
+    getUsers
 }

@@ -83,3 +83,10 @@ app.post('/api/comment', async function(req, res){
     const commentResult = await orm.commentResult( commentData );
     res.send(commentResult);
 })
+
+//get users data from the db
+app.get('/api/users', async (req, res) => {
+    const getUsers = await orm.getUsers();
+    // console.log('the walk data is', getWalkData)
+    res.json(getUsers);
+})

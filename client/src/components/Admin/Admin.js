@@ -1,5 +1,7 @@
 import React from 'react'
 import SearchForm from './SearchForm'
+import ModeratorTable from './ModeratorTable'
+
 
 
 function Admin() {
@@ -8,6 +10,7 @@ function Admin() {
             <div class="col-lg-12">
                 <h1>The admin page</h1> 
                    <SearchForm /> 
+                   <ModeratorTable/>
             </div>
                 
             
