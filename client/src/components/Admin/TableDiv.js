@@ -3,7 +3,19 @@ import React, {useState, useEffect} from 'react'
 
 function TableDiv(props) {
     const[ myOption, setMyOption] = useState('')
-    console.log('the props is', props)
+    console.log('the props is', props.users)
+
+    let newUsers = ([...props.users])
+    
+    newUsers.forEach( element => {
+        element.MemberSince = (new Date(element.updatedAt).getTime() - new Date(element.createdAt).getTime())/ ( 1000 * 3600 * 24 )
+        element.MemberSince = Math.floor(element.MemberSince)
+    
+    })
+    console.log(newUsers)
+    // props.users.forEach( element => {
+    //     element.memberSince = ( element.createdAt.getTime() - element.updatedAt.getTime() )/( 1000 * 3600 * 24 )
+    // })
 
     function handleChange(e){
         console.log('i am cliecked[handlechange]')
@@ -53,7 +65,7 @@ function TableDiv(props) {
                     <td >{item.name}                                       
                         </td>
                     
-                    <td>{item.createdAt}</td>
+                    <td>{item.MemberSince}</td>
                     <td>{item.points}</td>
                     <td>{item.userType}</td>
                     <td>

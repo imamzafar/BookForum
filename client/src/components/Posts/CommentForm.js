@@ -37,7 +37,7 @@ function CommentForm(props) {
                 },
                 body: JSON.stringify(commentData)
           }).then( result=>result.json())   
-          console.log(apiReply)
+        //   console.log(apiReply)
         
           //load page after the post submitted to db
           props.loadPage();

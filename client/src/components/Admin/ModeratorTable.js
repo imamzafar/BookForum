@@ -52,7 +52,7 @@ function ModeratorTable() {
                                     
                                         <th style={{ width: "20%" }} >
                                             <form class="form-inline">
-                                                <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Member Since</label>
+                                                <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Member Since<br/>(in days)</label>
                                                 <button onClick={handleDateChange}><i class="fas fa-caret-down"></i></button>
                                             </form>      
                                         </th>

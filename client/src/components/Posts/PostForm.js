@@ -8,7 +8,7 @@ function PostForm(props) {
         e.preventDefault();
         let post = { reply: e.target.value }
         setMyPost(post)
-        console.log(post);
+        // console.log(post);
     }
 
     async function handleSubmit(e){   
@@ -33,7 +33,7 @@ function PostForm(props) {
                 },
                 body: JSON.stringify(postData)
           }).then( result=>result.json())   
-          console.log(apiReply)
+        //   console.log(apiReply)
          
           props.loadPage();
         }
@@ -43,7 +43,6 @@ function PostForm(props) {
     }
 
     function handleCancel(e){
-        console.log('i am cancel button')
         props.submitForm(e);  
     }
     // function handleCancel(e){

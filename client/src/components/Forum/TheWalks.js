@@ -21,6 +21,8 @@ function TheWalks() {
             element.createdAt = new Date(element.createdAt).toString().substring(4, 15)   
             element.updatedAt = new Date(element.updatedAt).toString().substring(4, 15) 
         });
+
+        
         // console.log(apiGetWalk[0].user.name)
         // console.log(apiGetWalk[0]._id)
         setWalkResult(apiGetWalk)
@@ -31,7 +33,7 @@ function TheWalks() {
         e.preventDefault();
         let id = localStorage.id;
         let result = walkResult.find( ele => ele.userId === id)
-        console.log('the result is', result)
+        // console.log('the result is', result)
         // console.log( result.userInfo[0].points)
         setShowForm( true );
         // if( result.userInfo[0].points > 5){
