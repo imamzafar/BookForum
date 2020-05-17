@@ -16,11 +16,16 @@ function TheWalks() {
 
     async function loadPage(){
         const apiGetWalk = await fetch('/api/walkdata').then( result => result.json() )
-        console.log(apiGetWalk)
+        // console.log(apiGetWalk)
+        apiGetWalk.forEach(element => { 
+            element.createdAt = new Date(element.createdAt).toString().substring(4, 15)   
+            element.updatedAt = new Date(element.updatedAt).toString().substring(4, 15) 
+        });
         // console.log(apiGetWalk[0].user.name)
         // console.log(apiGetWalk[0]._id)
         setWalkResult(apiGetWalk)
     }
+    console.log(walkResult);
 
     function handleSubmit(e){
         e.preventDefault();
@@ -88,7 +93,7 @@ function TheWalks() {
                                                             
                                                             }}> 
                                         {event.title} </Link><br/>
-                                        Name<br/>
+                                        {event.user.name}<br/>
                                         {event.createdAt}  
                                          </td>
                                         

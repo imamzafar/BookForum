@@ -54,6 +54,7 @@ async function registerUser( userData ){
         // console.log(data);
         const walkData = {
             userId: data.id,
+            name: data.name,
             user: {name:data.name, id:data.id },
             slug: data.slug,
             title: data.data.title,
@@ -95,6 +96,7 @@ async function registerUser( userData ){
         // console.log('the data is', data)
        const postData = {
            userId: data.userId,
+           name: data.name,
            user: { name: data.name},
            message: data.post.reply,
            postId: data.postId,

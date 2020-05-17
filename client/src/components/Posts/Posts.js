@@ -35,6 +35,10 @@ function Posts(props) {
         //get replies for the post
         const apiGetReply = await fetch(`/api/replydata/${postId}`).then( result => result.json() )
         // console.log([apiGetReply[0].comment])
+        apiGetReply.forEach(element => { 
+            element.createdAt = new Date(element.createdAt).toString().substring(4, 15)   
+            element.updatedAt = new Date(element.updatedAt).toString().substring(4, 15) 
+        });
         setReplyResult(apiGetReply)
         let replyArray = apiGetReply.length;
         setNumberReply(replyArray);   
@@ -57,8 +61,7 @@ function Posts(props) {
         {
             setReplyForm({id: '', state: false});
         }
-        
-       
+  
     }
 
     function submitReply(e, idx){

@@ -4,7 +4,7 @@ import { Link, useLocation} from 'react-router-dom';
 
 function ForumHome() {
     let location = useLocation();
-    console.log(location)
+    // console.log(location)
     
     return (
         <div class="container-fluid">
