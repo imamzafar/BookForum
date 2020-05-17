@@ -79,7 +79,7 @@ app.post('/api/counter/:postId', async function(req, res){
 //post comments to replies to reply model
 app.post('/api/comment', async function(req, res){
     const commentData = req.body;
-    console.log('the [api/comment server] is', commentData)
+    // console.log('the [api/comment server] is', commentData)
     const commentResult = await orm.commentResult( commentData );
     res.send(commentResult);
 })
@@ -90,5 +90,25 @@ app.get('/api/users', async (req, res) => {
     // console.log('the walk data is', getWalkData)
     res.json(getUsers);
     let date = new Date(getUsers[0].startDate).toString().substring(4, 15)
-    console.log(date)
+    // console.log(date)
+})
+
+//updating user type in the db
+app.post('/api/moderator/:id', async function(req, res){
+    const id = req.params.id;
+    const userType = req.body;
+    console.log('the [api/moderator server] is', userType)
+    const userTypeResult = await orm.userTypeResult( id, userType );
+    res.send(userTypeResult);
+})
+
+//delete user 
+app.delete('/api/deleteuser/:id', async(req, res) =>{
+  const id = req.params.id;
+  console.log('deleteuser is', id)
+  
+  const deleteUser = await orm.deleteUser(id);
+  
+  res.send(deleteUser)
+  
 })

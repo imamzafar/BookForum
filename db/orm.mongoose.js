@@ -156,6 +156,24 @@ async function registerUser( userData ){
         return getUsersData;
     }
 
+    //update user type admin page
+    async function userTypeResult(id, userType){
+        console.log('the [orm userType] is', userType)
+        const userTypeDB = await db.user.findByIdAndUpdate({_id:id}, {userType: userType.userType})
+        return {
+            message: "user is updated successfuly!"
+        }
+    }
+
+    //delete users admin component
+    async function deleteUser(id){
+        console.log('the [orm delete user] is', id)
+        const userTypeDB = await db.user.findOneAndDelete({_id:id})
+        return {
+            message: "user is deleted successfuly!"
+        }
+    }
+
 module.exports = { 
     loginUser,
     registerUser,
@@ -166,5 +184,6 @@ module.exports = {
     getReplyData,
     counterData,
     commentResult,
-    getUsers
+    getUsers,
+    userTypeResult
 }
