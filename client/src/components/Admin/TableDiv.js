@@ -31,7 +31,7 @@ function TableDiv(props) {
                 body: JSON.stringify(data)
           }).then( result=>result.json()) 
           console.log(apiModerator)
-
+          props.loadPage();
         }
         if ( myOption == "Delete" ){
             let id = e.target.id;

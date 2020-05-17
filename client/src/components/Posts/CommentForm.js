@@ -51,14 +51,17 @@ function CommentForm(props) {
     }
 
     return (
-        <div>
-             <form>
-               
-                <textarea type="text" name="" id="message" value={addReply.comment} onChange={updateThread} placeholder="Your Message" cols="60" rows="5"></textarea><br/>
+        
+        <div class="col-lg-12 mt-4">
+            <div class="row justify-content-end">
+                <form>
                 
-                <button class="btn myBtnPink" type="submit" onClick={handleSubmit}>Add</button> 
-                <button class="btn myBtnPink" type="submit" onClick={handleCancel}>Cancel</button> 
-            </form>
+                    <textarea type="text" name="" id="message" value={addReply.comment} onChange={updateThread} placeholder="Your Message" cols="60" rows="5"></textarea><br/>
+                    
+                    <button class="btn myBtnPink" type="submit" onClick={handleSubmit}>Add</button> 
+                    <button class="btn myBtnPink" type="submit" onClick={handleCancel}>Cancel</button> 
+                </form>
+            </div>
         </div>
     )
 }

@@ -67,7 +67,7 @@ function ModeratorTable() {
                                         <th style={{ width: "20%" }} >Action</th>
                                     </tr>
                                 </thead>
-                                <TableDiv users={users} />
+                                <TableDiv users={users} loadPage={loadPage}/>
                         </table>
                     </div>
                 </div>

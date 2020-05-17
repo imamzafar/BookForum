@@ -158,7 +158,7 @@ async function registerUser( userData ){
 
     //update user type admin page
     async function userTypeResult(id, userType){
-        console.log('the [orm userType] is', userType)
+        // console.log('the [orm userType] is', userType)
         const userTypeDB = await db.user.findByIdAndUpdate({_id:id}, {userType: userType.userType})
         return {
             message: "user is updated successfuly!"

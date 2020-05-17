@@ -62,17 +62,19 @@ function WalkForm(props) {
 
 
     return (
-        <div>
-            <div class={ alertMessage.type ? `alert alert-${alertMessage.type}` : `d-hide`} role="alert">
-                {alertMessage.message}
+        <div class="col-lg-12">
+            <div class="row justify-content-center">
+                <div class={ alertMessage.type ? `alert alert-${alertMessage.type}` : `d-hide`} role="alert">
+                    {alertMessage.message}
+                </div>
+                <form>
+                    <textarea type="textarea" name="" id="title" value={myThread.title} onChange={updateThread} placeholder="Title" cols="100" rows="1" ></textarea><br/>
+                    <textarea type="textarea" name="" id="message" value={myThread.message} onChange={updateThread} placeholder="Your Message" cols="100" rows="5" ></textarea><br/>
+                    
+                    <button class="btn myBtnPink" type="submit" onClick={handleSubmit}>Add</button>  
+                    <button class="btn myBtnPink" type="submit" onClick={handleCancel}>Cancel</button>
+                </form>
             </div>
-             <form>
-                <input type="text" name="" id="title" value={myThread.title} onChange={updateThread} placeholder="Title" size="40"></input><br/>
-                <input type="text" name="" id="message" value={myThread.message} onChange={updateThread} placeholder="Your Message" size="40"></input><br/>
-                
-                <button class="btn myBtnPink" type="submit" onClick={handleSubmit}>Add</button>  
-                <button class="btn myBtnPink" type="submit" onClick={handleCancel}>Cancel</button>
-            </form>
         </div>
     )
 }

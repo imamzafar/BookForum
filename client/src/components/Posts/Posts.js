@@ -190,9 +190,10 @@ function Posts(props) {
                                 <div class="col-lg-12" >
                                     <div class="row justify-content-end">
                                         <button class="pr-4" type="submit" id={idx} onClick={e => addBtnReply(e, idx)} style={pageStyle.btn}>Reply</button><br/>
-                                        { replyForm.id == idx && replyForm.state ? <CommentForm submitReply={submitReply} idx={idx} reply={reply} loadPage={loadPage}/> : ''}
+                                        {/* { replyForm.id == idx && replyForm.state ? <CommentForm submitReply={submitReply} idx={idx} reply={reply} loadPage={loadPage}/> : ''} */}
                                         <button class="pr-4" type="submit" id={reply.userId} onClick={e => editBtnPost(e, idx)} style={pageStyle.btn}>Edit</button><br/>
                                         <button class="pr-4" type="submit" id={reply.userId} onClick={e => deleteBtnPost(e, idx)} style={pageStyle.btn}>Delete</button> <br/>
+                                        { replyForm.id == idx && replyForm.state ? <CommentForm submitReply={submitReply} idx={idx} reply={reply} loadPage={loadPage}/> : ''}
                                     </div>
                                 </div>
                             </div>    

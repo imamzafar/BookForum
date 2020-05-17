@@ -97,7 +97,7 @@ app.get('/api/users', async (req, res) => {
 app.post('/api/moderator/:id', async function(req, res){
     const id = req.params.id;
     const userType = req.body;
-    console.log('the [api/moderator server] is', userType)
+    // console.log('the [api/moderator server] is', userType)
     const userTypeResult = await orm.userTypeResult( id, userType );
     res.send(userTypeResult);
 })

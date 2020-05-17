@@ -27,7 +27,7 @@ function TheWalks() {
         let id = localStorage.id;
         let result = walkResult.find( ele => ele.userId === id)
         console.log('the result is', result)
-        console.log( result.userInfo[0].points)
+        // console.log( result.userInfo[0].points)
         setShowForm( true );
         // if( result.userInfo[0].points > 5){
         //     setShowForm( true );
@@ -53,10 +53,10 @@ function TheWalks() {
                     <h2 class="my-4">The Walks</h2>
                     <p>Share your everyday walk stories! How much you walked, what did you see? whom you met? all interestin conversations.</p>
                 </div>
-                <div class="col-lg-10 mx-auto justify-content-end" style={{border:"1px solid black"}}>
-                    <div class="row justify-content-end">
+                <div class="col-lg-10 mx-auto">
+                    <div class="row mx-auto justify-content-end">
                         {/* <button onClick={function(){localStorage.points > 5 ? setShowForm(true) : setShowForm(false); alert('Not enough points to start a new thread')}}>New Thread</button> */}
-                        <button onClick={handleSubmit}>New Thread</button>
+                        <button onClick={handleSubmit}>New Thread</button><br/>
                         {showForm ? <WalkForm submitThread = {submitThread} loadPage= {loadPage}/> : ''}
                     </div>
                 </div>
