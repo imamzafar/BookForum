@@ -132,3 +132,11 @@ app.post('/api/editReply', async function(req, res){
     const editReplyResult = await orm.editReplyResult( editReplyData );
     res.send(editReplyResult);
 })  
+
+//edit reply from editpostform componenet
+app.post('/api/editPost', async function(req, res){
+    const editPostData = req.body;
+    // console.log('the [api/editPost server] is', editPostData)
+    const editPostResult = await orm.editPostResult( editPostData );
+    res.send(editPostResult);
+})  

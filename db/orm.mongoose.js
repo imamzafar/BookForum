@@ -194,14 +194,26 @@ async function registerUser( userData ){
     }
 
     async function editReplyResult(data){
-        console.log( 'editReplyResult [orm]', data)
+        // console.log( 'editReplyResult [orm]', data)
         const postData = {
             message: data.edited
         } 
 
         const postEditReply = await db.reply.findOneAndUpdate({ $and: [{_id:data.replyId}, {postId:data.postId}] }, {message: data.edited}) 
         return{
-            message: "post submited successfully!"
+            message: "reply edited successfully!"
+        }
+    }
+
+    async function editPostResult(data){
+        // console.log( 'editReplyResult [orm]', data)
+        const postData = {
+            message: data.edited
+        } 
+
+        const postEditPost = await db.walk.findOneAndUpdate({_id:data.postId}, {message: data.edited}) 
+        return{
+            message: "post edited successfully!"
         }
     }
 
@@ -218,5 +230,6 @@ module.exports = {
     getUsers,
     userTypeResult, 
     deletePost,
-    editReplyResult
+    editReplyResult,
+    editPostResult
 }

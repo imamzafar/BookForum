@@ -4,6 +4,7 @@ import PostForm from './PostForm';
 import CommentForm from './CommentForm';
 import CommentArray from './CommentArray';
 import EditCommentForm from './EditCommentForm';
+import EditPost from './EditPost';
 
 
 function Posts(props) {
@@ -11,6 +12,7 @@ function Posts(props) {
     const [ showForm, setShowForm ] = useState(false);
     const [ replyForm, setReplyForm ] = useState(false);
     const [ editForm, setEditForm ] = useState(false);
+    const [ editPost, setEditPost ] = useState(false);
     const[ replyResult, setReplyResult ] = useState( [] )
     const[ numberReply, setNumberReply] = useState()
     const[ myLike, setMyLike ] = useState('')
@@ -50,9 +52,11 @@ function Posts(props) {
     console.log(walkPost);
     console.log('the reply result is',replyResult)
     //submitForm for the Post reply
+
     function submitForm(e){
-        setShowForm(false);
         e.preventDefault();
+        setShowForm(false);
+        setEditPost(false);
     }
     
     //submit form for the comments
@@ -128,6 +132,10 @@ function Posts(props) {
         console.log(apiDeletePost)
     }
 
+    function handleEditPost(e){
+        e.preventDefault();
+        setEditPost(true)
+    }
    
     return (
         <div class="container-fluid">
@@ -151,9 +159,9 @@ function Posts(props) {
                                 <div class="col-lg-3">
                                     <small>Replies:{numberReply}</small>
                                 </div> 
-                                <div class="col-12">
+                                { editPost ? <EditPost submitForm={submitForm} walkPost={walkPost} loadPage={loadPage}/> : <div class="col-12">
                                     <p>{walkPost.message}</p>
-                                </div> 
+                                    </div> }
                                 <div class="col-12 mt-4">
                                     
                                 </div>     
@@ -169,7 +177,7 @@ function Posts(props) {
                                     { showForm ?  <PostForm submitForm={submitForm} walkPost={walkPost} loadPage={loadPage}/> : ''}
                                 </div>
                                 <div class="col-lg-1 col-md-1">
-                                    { localStorage.id === walkPost.userId || localStorage.type === 'modertor' ? <button onClick={() => setShowForm(true)} style={pageStyle.mainBtn}>Edit</button> : '' }
+                                    { localStorage.id === walkPost.userId || localStorage.type === 'modertor' ? <button onClick={handleEditPost} style={pageStyle.mainBtn}>Edit</button> : '' }
                                 </div>
                                 <div class="col-lg-1 col-md-1">
                                     { localStorage.id === walkPost.userId || localStorage.type === 'admin'? <button onClick={ e => handleDelete(e, walkPost._id, walkPost.userId)} style={pageStyle.mainBtn}>Delete</button> : ''}
