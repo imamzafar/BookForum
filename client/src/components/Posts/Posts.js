@@ -3,6 +3,7 @@ import { useLocation, useParams} from 'react-router-dom';
 import PostForm from './PostForm';
 import CommentForm from './CommentForm';
 import CommentArray from './CommentArray';
+import EditCommentForm from './EditCommentForm';
 
 
 function Posts(props) {
@@ -68,6 +69,7 @@ function Posts(props) {
 
     function submitReply(e, idx){
         setReplyForm({id: idx, state: false});
+        setEditForm({id: idx, state: false});
         e.preventDefault();
     }
 
@@ -106,9 +108,9 @@ function Posts(props) {
         
     }
 
-    function editBtnPost(e, idx){
+    function editReply(e, idx){
         let id = e.target.id;
-        if(localStorage.id == id){
+        if(localStorage.id == id || localStorage.Type == 'moderator' || localStorage.Type == 'admin'){
             setEditForm({id: idx, state: true});
         }else{
             setEditForm({id: '', state: false});
@@ -124,8 +126,6 @@ function Posts(props) {
         })
         .then( result=>result.json()) 
         console.log(apiDeletePost)
-        
-
     }
 
    
@@ -201,14 +201,14 @@ function Posts(props) {
                                         <div class="col-lg-4"></div>
                                     </div>        
                                 </div>
-                                <div class="col-lg-12 my-2" >
+                                { editForm.id == idx && editForm.state ? <EditCommentForm submitReply={submitReply} idx={idx} reply={reply} loadPage={loadPage}/> : <div class="col-lg-12 my-2" >
                                     {reply.message}
-                                </div> 
+                                </div> }
                                 <div class="col-lg-12" >
                                     <div class="row justify-content-end">
                                         <button class="pr-4" type="submit" id={idx} onClick={e => addBtnReply(e, idx)} style={pageStyle.btn}>Reply</button><br/>
                                         {/* { replyForm.id == idx && replyForm.state ? <CommentForm submitReply={submitReply} idx={idx} reply={reply} loadPage={loadPage}/> : ''} */}
-                                        <button class="pr-4" type="submit" id={reply.userId} onClick={e => editBtnPost(e, idx)} style={pageStyle.btn}>Edit</button><br/>
+                                        <button class="pr-4" type="submit" id={reply.userId} onClick={e => editReply(e, idx)} style={pageStyle.btn}>Edit</button><br/>
                                         <button class="pr-4" type="submit" id={reply.userId} onClick={e => deleteBtnPost(e, idx)} style={pageStyle.btn}>Delete</button> <br/>
                                         { replyForm.id == idx && replyForm.state ? <CommentForm submitReply={submitReply} idx={idx} reply={reply} loadPage={loadPage}/> : ''}
                                         

@@ -43,7 +43,7 @@ function CommentForm(props) {
           props.loadPage();
         }
         else {
-            alert('message the comment is empty')
+            alert('the comment is empty')
         }     
     }
     function handleCancel(e){
