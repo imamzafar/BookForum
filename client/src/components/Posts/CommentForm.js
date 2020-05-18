@@ -46,6 +46,7 @@ function CommentForm(props) {
             alert('the comment is empty')
         }     
     }
+    
     function handleCancel(e){
         props.submitReply(e) 
     }

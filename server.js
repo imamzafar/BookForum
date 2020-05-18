@@ -105,7 +105,7 @@ app.post('/api/moderator/:id', async function(req, res){
 //delete user 
 app.delete('/api/deleteuser/:id', async(req, res) =>{
   const id = req.params.id;
-  console.log('deleteuser is', id)
+//   console.log('deleteuser is', id)
   
   const deleteUser = await orm.deleteUser(id);
   
@@ -124,3 +124,11 @@ app.delete('/api/deletepost/:id/:userId', async(req, res) =>{
     res.send(deletePost)
     
   })
+
+//edit reply from editcommentform componenet
+app.post('/api/editReply', async function(req, res){
+    const editReplyData = req.body;
+    // console.log('the [api/editReply server] is', editReplyData)
+    const editReplyResult = await orm.editReplyResult( editReplyData );
+    res.send(editReplyResult);
+})  

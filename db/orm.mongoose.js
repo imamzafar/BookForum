@@ -133,6 +133,7 @@ async function registerUser( userData ){
         }
     }
 
+    //post comment
     async function commentResult(data){
         // console.log(data.post.reply);
         // console.log('the [commentResult ORM] data is', data)
@@ -169,7 +170,7 @@ async function registerUser( userData ){
 
     //delete users admin component
     async function deleteUser(id){
-        console.log('the [orm delete user] is', id)
+        // console.log('the [orm delete user] is', id)
         const userTypeDB = await db.user.findOneAndDelete({_id:id})
         return {
             message: "user is deleted successfuly!"
@@ -192,6 +193,18 @@ async function registerUser( userData ){
         }
     }
 
+    async function editReplyResult(data){
+        console.log( 'editReplyResult [orm]', data)
+        const postData = {
+            message: data.edited
+        } 
+
+        const postEditReply = await db.reply.findOneAndUpdate({ $and: [{_id:data.replyId}, {postId:data.postId}] }, {message: data.edited}) 
+        return{
+            message: "post submited successfully!"
+        }
+    }
+
 module.exports = { 
     loginUser,
     registerUser,
@@ -204,5 +217,6 @@ module.exports = {
     commentResult,
     getUsers,
     userTypeResult, 
-    deletePost
+    deletePost,
+    editReplyResult
 }

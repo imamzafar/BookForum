@@ -2,33 +2,44 @@ import React, {useState} from 'react'
 
 
 function EditCommentForm(props) {
-    console.log(props.reply)
+    // console.log(props.reply)
     const[ editReply, setEditReply ] = useState( {message: props.reply.message} )
 
     function handleEdit(e){
         e.preventDefault();
         let userEdit = e.target.value;
-        setEditReply( {messsage: userEdit} );
+        setEditReply( {message: userEdit} );
 
     }
     // console.log(editReply)
     
-    function handleEditSubmit(e){
+    async function handleEditSubmit(e){
         e.preventDefault();
 
-    let EditReplyData = {
+    let editReplyData = {
             postId:props.reply.postId,
             userId:props.reply.postId,
-            replyId: _id,
-            editReply: editReply.message
+            replyId:props.reply._id,
+            edited: editReply.message
         } 
 
-        props.loadPage();
+        const apiReply = await fetch('/api/editReply', 
+            {   method: 'post',
+                headers: {
+                    'Accept': 'application/json, text/plain, */*',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(editReplyData)
+          }).then( result=>result.json())   
+
+    props.submitReply(e)
+    props.loadPage();
     }
     
     function handleEditCancel(e){
-        props.submitReply(e)
+        props.submitReply(e)  
     }
+
     return (
         <div class="col-lg-12 mt-4">
             <div class="row">
