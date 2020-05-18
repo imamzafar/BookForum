@@ -103,7 +103,7 @@ function Posts(props) {
         //   console.log(apiLike)
     }
 
-    function deleteBtnPost(e, idx, replyId){
+    async function deleteBtnPost(e, idx, replyId){
         e.preventDefault();
         let id = e.target.id; 
         // console.log(id)
