@@ -2,6 +2,8 @@ import React, {useState, useEffect} from 'react'
 import { useLocation, useParams} from 'react-router-dom';
 import PostForm from './PostForm';
 import CommentForm from './CommentForm';
+import CommentArray from './CommentArray';
+
 
 function Posts(props) {
     const [ walkPost, setWalkPost ] = useState({});
@@ -44,8 +46,8 @@ function Posts(props) {
         setNumberReply(replyArray);   
         setMyLike(apiGetWalkPost.likes);     
     }
-    console.log(walkPost);
- console.log('the reply result is',replyResult)
+    // console.log(walkPost);
+    console.log('the reply result is',replyResult)
     //submitForm for the Post reply
     function submitForm(e){
         setShowForm(false);
@@ -197,9 +199,12 @@ function Posts(props) {
                                         <button class="pr-4" type="submit" id={reply.userId} onClick={e => editBtnPost(e, idx)} style={pageStyle.btn}>Edit</button><br/>
                                         <button class="pr-4" type="submit" id={reply.userId} onClick={e => deleteBtnPost(e, idx)} style={pageStyle.btn}>Delete</button> <br/>
                                         { replyForm.id == idx && replyForm.state ? <CommentForm submitReply={submitReply} idx={idx} reply={reply} loadPage={loadPage}/> : ''}
+                                        
                                     </div>
+                                    
                                 </div>
-                            </div>    
+                            </div> 
+                            <CommentArray comment={reply.comment} />   
                         </div>
                     </div> ) : ''}
              

@@ -9,11 +9,13 @@ let reply = new Schema ({
         id: { type: String },
     },
     message: {type: String},
-    comment:{
+    comment:[
+        {
         postcomment:{type: String },
         commenterId:{type: String},
         commenterName:{type: String},
-    },
+        },
+    ],    
     userInfo: [
         {
            type: mongoose.Schema.Types.ObjectId,

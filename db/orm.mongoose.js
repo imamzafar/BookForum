@@ -135,9 +135,9 @@ async function registerUser( userData ){
 
     async function commentResult(data){
         // console.log(data.post.reply);
-        console.log('the [commentResult ORM] data is', data)
-        console.log('the reply id is', data.replyId)
-        console.log('the post id is', data.postId)
+        // console.log('the [commentResult ORM] data is', data)
+        // console.log('the reply id is', data.replyId)
+        // console.log('the post id is', data.postId)
        const commentData = {
             commenterId:data.userId,
             commenterName: data.name,
