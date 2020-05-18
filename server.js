@@ -112,3 +112,15 @@ app.delete('/api/deleteuser/:id', async(req, res) =>{
   res.send(deleteUser)
   
 })
+
+//delete post from post.js
+app.delete('/api/deletepost/:id/:userId', async(req, res) =>{
+    const id = req.params.id;
+    const userId = req.params.userId
+    // console.log('delete Post [server] is', id, userId)
+    
+    const deletePost = await orm.deletePost(id, userId);
+    
+    res.send(deletePost)
+    
+  })

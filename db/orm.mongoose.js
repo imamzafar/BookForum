@@ -176,6 +176,22 @@ async function registerUser( userData ){
         }
     }
 
+    //delete post from posts component
+    async function deletePost(id, userId){
+        // console.log('the [orm delete user] is', id, userId)
+        const deletePostResult = await db.walk.findOneAndDelete({_id:id})
+        const deletePostFromReplyModel = await db.reply.deleteMany({ postId:id }, function(err, result) {
+            if (err) {
+              res.send(err);
+            } else {
+              res.send(result);
+            }
+          });
+        return {
+            message: "user is deleted successfuly!"
+        }
+    }
+
 module.exports = { 
     loginUser,
     registerUser,
@@ -187,5 +203,6 @@ module.exports = {
     counterData,
     commentResult,
     getUsers,
-    userTypeResult
+    userTypeResult, 
+    deletePost
 }

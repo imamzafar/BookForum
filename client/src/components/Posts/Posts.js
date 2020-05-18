@@ -46,7 +46,7 @@ function Posts(props) {
         setNumberReply(replyArray);   
         setMyLike(apiGetWalkPost.likes);     
     }
-    // console.log(walkPost);
+    console.log(walkPost);
     console.log('the reply result is',replyResult)
     //submitForm for the Post reply
     function submitForm(e){
@@ -99,9 +99,9 @@ function Posts(props) {
 
     function deleteBtnPost(e, idx){
         let id = e.target.id; 
-        console.log(id)
+        // console.log(id)
         if(localStorage.id == id){
-            console.log('do the api call')
+            // console.log('do the api call')
         }
         
     }
@@ -114,6 +114,18 @@ function Posts(props) {
             setEditForm({id: '', state: false});
         }
        
+    }
+
+    async function handleDelete(e, id, userId){
+        e.preventDefault();
+        const apiDeletePost = await fetch(`/api/deletepost/${id}/${userId}`, 
+        {   method: 'delete'
+            
+        })
+        .then( result=>result.json()) 
+        console.log(apiDeletePost)
+        
+
     }
 
    
@@ -147,20 +159,20 @@ function Posts(props) {
                                 </div>     
                             </div>
                         </div>
-                        <div  class="col-lg-10 mt-2" >
+                        <div  class="col-lg-10 col-md-10 mt-2" >
                             <div class="row justify-content-start">
-                                <div class="col-lg-1">
+                                <div class="col-lg-1 col-md-1">
                                     <button style={pageStyle.btn} type="submit" onClick={e => {handleLike(e)}}><i class="fas fa-thumbs-up"></i><span class="pl-2">{myLike}</span></button>
                                 </div>
-                                <div class="col-lg-1">
+                                <div class="col-lg-1 col-md-1">
                                     <button onClick={function () { localStorage.id ? setShowForm(true) : setShowForm(false)}} style={pageStyle.mainBtn}>Reply</button>
                                     { showForm ?  <PostForm submitForm={submitForm} walkPost={walkPost} loadPage={loadPage}/> : ''}
                                 </div>
-                                <div class="col-lg-1">
+                                <div class="col-lg-1 col-md-1">
                                     { localStorage.id === walkPost.userId || localStorage.type === 'modertor' ? <button onClick={() => setShowForm(true)} style={pageStyle.mainBtn}>Edit</button> : '' }
                                 </div>
-                                <div class="col-lg-1">
-                                    { localStorage.id === walkPost.userId || localStorage.type === 'admin'? <button onClick={() => setShowForm(false)} style={pageStyle.mainBtn}>Delete</button> : ''}
+                                <div class="col-lg-1 col-md-1">
+                                    { localStorage.id === walkPost.userId || localStorage.type === 'admin'? <button onClick={ e => handleDelete(e, walkPost._id, walkPost.userId)} style={pageStyle.mainBtn}>Delete</button> : ''}
                                 </div>
                             </div>
 

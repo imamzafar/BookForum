@@ -18,12 +18,10 @@ function TableDiv(props) {
     // })
 
     function handleChange(e){
-        console.log('i am cliecked[handlechange]')
         e.preventDefault();
-        console.log(e.target.value)
+        // console.log(e.target.value)
         setMyOption(e.target.value);
     }
-   console.log(myOption)
     async function handleSubmit(e){
         e.preventDefault();
         console.log(e.target)
