@@ -140,3 +140,14 @@ app.post('/api/editPost', async function(req, res){
     const editPostResult = await orm.editPostResult( editPostData );
     res.send(editPostResult);
 })  
+
+//delete reply from reply model
+app.delete('/api/deletereply/:replyId', async(req, res) =>{
+    const replyId = req.params.replyId
+    // console.log('reply Post [server] is', replyId)
+    
+    const deleteReply = await orm.deleteReply(replyId);
+    
+    res.send(deleteReply)
+    
+  })

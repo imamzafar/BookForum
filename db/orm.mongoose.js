@@ -193,6 +193,16 @@ async function registerUser( userData ){
         }
     }
 
+    //delete reply from reply model
+    async function deleteReply(replyId){
+        // console.log('the [orm delete reply] is', replyId)
+        const deletePostReply = await db.reply.findOneAndDelete({_id:replyId})
+        
+        return {
+            message: "reply is deleted successfuly!"
+        }
+    }
+
     async function editReplyResult(data){
         // console.log( 'editReplyResult [orm]', data)
         const postData = {
@@ -231,5 +241,6 @@ module.exports = {
     userTypeResult, 
     deletePost,
     editReplyResult,
-    editPostResult
+    editPostResult,
+    deleteReply
 }

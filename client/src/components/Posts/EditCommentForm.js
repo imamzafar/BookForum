@@ -41,7 +41,7 @@ function EditCommentForm(props) {
     }
 
     return (
-        <div class="col-lg-12 mt-4">
+        <div class="col-lg-12 ml-2 mt-4">
             <div class="row">
                 <form>
                     <textarea type="text" name="" id="message" value={editReply.message} onChange={handleEdit} placeholder="Your Message" cols="100" rows="5"></textarea><br/>

@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react'
-import { useLocation, useParams} from 'react-router-dom';
+import React, {useState, useEffect, } from 'react'
+import { useLocation, useParams, Redirect} from 'react-router-dom';
 import PostForm from './PostForm';
 import CommentForm from './CommentForm';
 import CommentArray from './CommentArray';
@@ -103,18 +103,24 @@ function Posts(props) {
         //   console.log(apiLike)
     }
 
-    function deleteBtnPost(e, idx){
+    function deleteBtnPost(e, idx, replyId){
+        e.preventDefault();
         let id = e.target.id; 
         // console.log(id)
         if(localStorage.id == id){
-            // console.log('do the api call')
+            const apiDeleteReply = await fetch(`/api/deletereply/${replyId}`, 
+            {   method: 'delete'
+                
+            })
+            .then( result=>result.json()) 
+            console.log(apiDeleteReply)
         }
         
     }
 
     function editReply(e, idx){
         let id = e.target.id;
-        if(localStorage.id == id || localStorage.Type == 'moderator' || localStorage.Type == 'admin'){
+        if(localStorage.id == id || localStorage.type === 'moderator' || localStorage.type === 'admin'){
             setEditForm({id: idx, state: true});
         }else{
             setEditForm({id: '', state: false});
@@ -130,6 +136,8 @@ function Posts(props) {
         })
         .then( result=>result.json()) 
         console.log(apiDeletePost)
+
+        // return <Redirect to='/' />
     }
 
     function handleEditPost(e){
@@ -177,7 +185,7 @@ function Posts(props) {
                                     { showForm ?  <PostForm submitForm={submitForm} walkPost={walkPost} loadPage={loadPage}/> : ''}
                                 </div>
                                 <div class="col-lg-1 col-md-1">
-                                    { localStorage.id === walkPost.userId || localStorage.type === 'modertor' ? <button onClick={handleEditPost} style={pageStyle.mainBtn}>Edit</button> : '' }
+                                    { localStorage.id === walkPost.userId || localStorage.type === 'moderator' || localStorage.type === 'admin'? <button onClick={handleEditPost} style={pageStyle.mainBtn}>Edit</button> : '' }
                                 </div>
                                 <div class="col-lg-1 col-md-1">
                                     { localStorage.id === walkPost.userId || localStorage.type === 'admin'? <button onClick={ e => handleDelete(e, walkPost._id, walkPost.userId)} style={pageStyle.mainBtn}>Delete</button> : ''}
@@ -217,7 +225,7 @@ function Posts(props) {
                                         <button class="pr-4" type="submit" id={idx} onClick={e => addBtnReply(e, idx)} style={pageStyle.btn}>Reply</button><br/>
                                         {/* { replyForm.id == idx && replyForm.state ? <CommentForm submitReply={submitReply} idx={idx} reply={reply} loadPage={loadPage}/> : ''} */}
                                         <button class="pr-4" type="submit" id={reply.userId} onClick={e => editReply(e, idx)} style={pageStyle.btn}>Edit</button><br/>
-                                        <button class="pr-4" type="submit" id={reply.userId} onClick={e => deleteBtnPost(e, idx)} style={pageStyle.btn}>Delete</button> <br/>
+                                        <button class="pr-4" type="submit" id={reply.userId} onClick={e => deleteBtnPost(e, idx, reply._id)} style={pageStyle.btn}>Delete</button> <br/>
                                         { replyForm.id == idx && replyForm.state ? <CommentForm submitReply={submitReply} idx={idx} reply={reply} loadPage={loadPage}/> : ''}
                                         
                                     </div>
