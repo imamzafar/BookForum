@@ -17,6 +17,7 @@ function Posts(props) {
     const[ numberReply, setNumberReply] = useState()
     const[ myLike, setMyLike ] = useState('')
     const[ myName, setMyName ] = useState('');
+    const [alertMessage, setAlertMessage] = useState( {type: "", message: ""})
     const pageStyle = {
         mainPost: {boxShadow: "5px 3px #9E9E9E", border: "1px solid #9f6934", background: "#90ee90"},
         mainBtn: {display:"block", backgroundColor: 'transparent', border: 'none', color:'#9f6934', fontWeight:'bold'},
@@ -59,6 +60,17 @@ function Posts(props) {
         setEditPost(false);
     }
     
+    //passing data from child to parent
+    function alertSuccess(msg){
+        setAlertMessage({type: 'success', message: msg})
+        setTimeout( function(){ setAlertMessage( {} ); }, 1000 );
+    }
+
+    //passing data from child to parent
+    function alertFailure(msg){
+        setAlertMessage({type: 'danger', message: msg})
+        setTimeout( function(){ setAlertMessage({}); }, 1000 );
+    }
     //submit form for the comments
     function addBtnReply(e, idx){
         e.preventDefault();
@@ -151,6 +163,12 @@ function Posts(props) {
                 <div class="col-lg-12 mx-auto" style={{height: "50px", backgroundColor: "#9f6934", padding: "0", margin: "0"}}>
                     <h2 style={{paddingTop: "10px", paddingLeft: "15px", color:"white"}}>Forum</h2>
                 </div>
+                <div class="row mx-auto">
+                    <div class={alertMessage.type ? `alert alert-${alertMessage.type}` : 'd-hide'  } role="alert" >
+                        {alertMessage.message}
+                    </div>
+                </div>
+                
                 <div class="col-lg-12 mx-auto">
                     <div class="row justify-content-center">
                         <div class="col-10">
@@ -182,7 +200,7 @@ function Posts(props) {
                                 </div>
                                 <div class="col-lg-1 col-md-1">
                                     <button onClick={function () { localStorage.id ? setShowForm(true) : setShowForm(false)}} style={pageStyle.mainBtn}>Reply</button>
-                                    { showForm ?  <PostForm submitForm={submitForm} walkPost={walkPost} loadPage={loadPage}/> : ''}
+                                    { showForm ?  <PostForm submitForm={submitForm} walkPost={walkPost} loadPage={loadPage} alertSuccess={alertSuccess} alertFailure={alertFailure}/> : ''}
                                 </div>
                                 <div class="col-lg-1 col-md-1">
                                     { localStorage.id === walkPost.userId || localStorage.type === 'moderator' || localStorage.type === 'admin'? <button onClick={handleEditPost} style={pageStyle.mainBtn}>Edit</button> : '' }
@@ -226,7 +244,7 @@ function Posts(props) {
                                         {/* { replyForm.id == idx && replyForm.state ? <CommentForm submitReply={submitReply} idx={idx} reply={reply} loadPage={loadPage}/> : ''} */}
                                         <button class="pr-4" type="submit" id={reply.userId} onClick={e => editReply(e, idx)} style={pageStyle.btn}>Edit</button><br/>
                                         <button class="pr-4" type="submit" id={reply.userId} onClick={e => deleteBtnPost(e, idx, reply._id)} style={pageStyle.btn}>Delete</button> <br/>
-                                        { replyForm.id == idx && replyForm.state ? <CommentForm submitReply={submitReply} idx={idx} reply={reply} loadPage={loadPage}/> : ''}
+                                        { replyForm.id == idx && replyForm.state ? <CommentForm submitReply={submitReply} idx={idx} alertSuccess={alertSuccess} alertFailure={alertFailure} reply={reply} loadPage={loadPage}/> : ''}
                                         
                                     </div>
                                     

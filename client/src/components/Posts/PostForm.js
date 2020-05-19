@@ -3,6 +3,7 @@ import React, {useState, useEffect} from 'react'
 function PostForm(props) {
     // console.log(props)
     const[ myPost, setMyPost ] = useState( { reply:""} )
+    
         
     function updatePost(e){
         e.preventDefault();
@@ -32,13 +33,20 @@ function PostForm(props) {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(postData)
-          }).then( result=>result.json())   
-        //   console.log(apiReply)
+          }).then( result=>result.json()) ; 
+          console.log(apiReply.message);
          
+            if(apiReply.message){
+                props.alertSuccess('Thank You! Your reply posted sucessfully.');
+                
+            } else {
+                props.alertFailure('Try again! Failed to post the message');
+            
+            }
           props.loadPage();
         }
         else{
-            alert('reply is empty')
+            props.alertFailure('Reply is empty');
         }  
     }
 
@@ -52,9 +60,7 @@ function PostForm(props) {
 
     return (
         <div>
-            {/* <div class={ alertMessage.type ? `alert alert-${alertMessage.type}` : `d-hide`} role="alert">
-                {alertMessage.message}
-            </div> */}
+            
              <form class="mt-2">
                 
                 <textarea type="textarea" name="" id="message" value={myPost.reply} onChange={updatePost} placeholder="Your Message" cols="70" rows="5" ></textarea><br/>

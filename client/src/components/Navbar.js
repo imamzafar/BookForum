@@ -30,7 +30,7 @@ function Navbar() {
                     <li className="nav-item">
                         <Link to="/registration" className="nav-link" href="#">Register</Link>
                     </li>
-                    { id == "5eb2f06712ad4942989f28cf" ?
+                    { id == "5ec39c638bbb23337445c8d5" ?
                     <li className="nav-item">
                         <Link to="/admin" className="nav-link" href="#">Admin</Link>
                     </li> : ''}

@@ -39,11 +39,16 @@ function CommentForm(props) {
           }).then( result=>result.json())   
         //   console.log(apiReply)
         
+        if(apiReply.message){
+            props.alertSuccess('Thank You! Your comment posted sucessfully.');
+        }else {
+            props.alertFailure('Try again! Failed to post the message');   
+        }
           //load page after the post submitted to db
           props.loadPage();
         }
         else {
-            alert('the comment is empty')
+            props.alertFailure('Try again! The comment form is empty')
         }     
     }
     
