@@ -62,7 +62,7 @@ function CommentForm(props) {
             <div class="row justify-content-end">
                 <form>
                 
-                    <textarea type="text" name="" id="message" value={addReply.comment} onChange={updateThread} placeholder="Your Message" cols="60" rows="5"></textarea><br/>
+                    <textarea type="text" name="" id="message" value={addReply.comment} onChange={updateThread} placeholder="Your Message" cols="100" rows="5"></textarea><br/>
                     
                     <button class="btn myBtnPink" type="submit" onClick={handleSubmit}>Add</button> 
                     <button class="btn myBtnPink" type="submit" onClick={handleCancel}>Cancel</button> 

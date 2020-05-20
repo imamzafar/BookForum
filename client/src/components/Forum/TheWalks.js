@@ -22,9 +22,10 @@ function TheWalks() {
             element.updatedAt = new Date(element.updatedAt).toString().substring(4, 15) 
         });
 
-        apiGetWalk.map( element => {
-            element.lastReply = element.userReply.pop();
-        }); 
+        // apiGetWalk.map( element => {
+        //     let lastReply = element.userReply.pop().name;
+        //     console.log(lastReply)
+        // }); 
         console.log(apiGetWalk[0].userReply[0])
         console.log(apiGetWalk[0].lastReply)
 
@@ -33,7 +34,7 @@ function TheWalks() {
         setWalkResult([...apiGetWalk])
     }
     console.log(walkResult);
-    // console.log(walkResult[0].lastReply)
+    // console.log(walkResult[2].lastReply)
 
     function handleSubmit(e){
         e.preventDefault();
@@ -119,8 +120,8 @@ function TheWalks() {
                                         <td style={{padding: '20px 0 0 0'}}>10</td>
                                         <td style={{padding: '20px 0 0 0'}}>
                                             {event.updatedAt}<br/>
-                                            {event.userReply.map( el => el.name)}
-                                            {/* {event.lastReply.name}</td> */}</td>
+                                            {/* {event.userReply.map( el => el.name)} */}
+                                            {() => {return event.userReply.pop().name}}</td>
                                     </tr>
                                 
                                 </tbody>) : ''}
