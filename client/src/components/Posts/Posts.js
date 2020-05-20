@@ -29,8 +29,9 @@ function Posts(props) {
     // console.log(name) // console.log(params)
    
     let location = useLocation();
+    console.log(props)
     // console.log(location) / console.log(props.location.myCustomProps)
-    let postId = location.state.id;
+    let postId = location.info.id;
 
     async function loadPage(){
         //get the main post of the page

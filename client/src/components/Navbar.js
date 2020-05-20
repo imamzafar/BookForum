@@ -21,15 +21,16 @@ function Navbar() {
                     <li className="nav-item">
                         <Link to="/" className="nav-link" >Home</Link>
                     </li>
-                    <li className="nav-item">
+                    {/* <li className="nav-item">
                         <Link to="/forum" className="nav-link" href="#">Forum</Link>
-                    </li>
-                    <li className="nav-item">
+                    </li> */}
+                    {/* <li className="nav-item">
                         <Link to="/search" className="nav-link" href="#">Search</Link>
-                    </li>
+                    </li> */}
+                    { !localStorage.id ?
                     <li className="nav-item">
                         <Link to="/registration" className="nav-link" href="#">Register</Link>
-                    </li>
+                    </li> : ''}
                     { id == "5ec39c638bbb23337445c8d5" ?
                     <li className="nav-item">
                         <Link to="/admin" className="nav-link" href="#">Admin</Link>

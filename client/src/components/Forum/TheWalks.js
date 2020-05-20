@@ -35,12 +35,15 @@ function TheWalks() {
         let result = walkResult.find( ele => ele.userId === id)
         console.log('the result is', result)
         // console.log( result.userInfo[0].points)
-        // setShowForm( true );
-        if( result && result.userInfo[0].points > 5){
+        if(localStorage.id){
             setShowForm( true );
-        } else{
-            alert('not enough points to start a thread')
         }
+       
+        // if( result && result.userInfo[0].points > 5){
+        //     setShowForm( true );
+        // } else{
+        //     alert('not enough points to start a thread')
+        // }
         
     }
      
@@ -63,8 +66,8 @@ function TheWalks() {
                 <div class="col-lg-10 mx-auto">
                     <div class="row mx-auto justify-content-end">
                         {/* <button onClick={function(){localStorage.points > 5 ? setShowForm(true) : setShowForm(false); alert('Not enough points to start a new thread')}}>New Thread</button> */}
-                        <button onClick={handleSubmit}>New Thread</button><br/>
-                        {showForm ? <WalkForm submitThread = {submitThread} loadPage= {loadPage}/> : ''}
+                        <button onClick={handleSubmit}>New Post</button><br/>
+                        {showForm ? <WalkForm submitThread ={submitThread} loadPage={loadPage}/> : ''}
                     </div>
                 </div>
                 <div>
@@ -91,7 +94,7 @@ function TheWalks() {
                                     <tr style={{ height: '80px', border: "3px solid #9f6934" }}>
                                         <td key={event._id}>
                                             <Link to={{ pathname: `/the-walks/${event.slug}`,
-                                                            state:{id: event._id}
+                                                            info:{id: event._id}
                                                             
                                                             }}> 
                                         {event.title} </Link><br/>

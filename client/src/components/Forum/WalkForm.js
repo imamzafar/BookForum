@@ -9,6 +9,7 @@ function WalkForm(props) {
     function updateThread(e){
         e.preventDefault();
        let id = e.target.id;
+
     //    console.log(id)
        let value = e.target.value;
     //    console.log(value)

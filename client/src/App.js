@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import './App.css';
 import Registration from './components/Registration/Registration';
@@ -16,15 +16,19 @@ import CoolPics from './components/Forum/CoolPics';
 import Posts from './components/Posts/Posts';
 import Admin from './components/Admin/Admin';
 
+
 function App() {
+
   let id = localStorage.id;
   return (
     <div className="App">
       <Router>
         <Navbar />
         <div className="container-fluid" style={{minHeight: "80vh", padding: "0"}}>
-          <Route exact path={["/", "/homepage"]} component={Homepage} />
-          <Route exact path={"/forum"} component={ForumHome} />
+        
+
+          <Route exact path={["/", "/homepage"]} component={ForumHome} />
+          {/* <Route exact path={"/forum"} component={ForumHome} /> */}
           <Route exact path="/Search" component={Search} />
           <Route exact path="/registration" component={Registration} />
           <Route exact path="/login" component={LoginPage} />
