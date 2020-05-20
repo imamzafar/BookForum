@@ -6,7 +6,7 @@ const orm = require( './db/orm.mongoose' );
 // const multer  = require('multer');
 const PORT = process.env.PORT || 8080;
 const app = express();
-var server = app.listen( PORT, function(){ console.log( `[Woof woof], http://localhost:${PORT}` ); });
+// var server = app.listen( PORT, function(){ console.log( `[Woof woof], http://localhost:${PORT}` ); });
 app.use( express.static('client/build/') );
 app.use(express.static(path.join(__dirname, "client/src/components/Genre")));
 app.use( express.urlencoded({ extended: false }) );
@@ -151,3 +151,11 @@ app.delete('/api/deletereply/:replyId', async(req, res) =>{
     res.send(deleteReply)
     
   })
+
+app.get('/*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client/build/', 'index.html'));
+});
+
+app.listen( PORT, function(){
+    console.log( `[book server] RUNNING, http://localhost:${PORT}` );
+ });
