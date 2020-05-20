@@ -224,8 +224,8 @@ function Posts(props) {
                 </div>    
             </div>
             <div class="row mt-4">
-                <div class="col-lg-12 my-2">
-                {replyResult.length !== 0 ? replyResult.map( (reply, idx) => <div class="row justify-content-center">
+                <div class="col-lg-12">
+                {replyResult.length !== 0 ? replyResult.map( (reply, idx) => <div class="row justify-content-center my-4">
                         <div class="col-lg-10 py-2" style={{border:'2px solid #9f6934'}}>
                             <div class="row">
                                 <div class="col-lg-2">
@@ -237,15 +237,15 @@ function Posts(props) {
                             </div>
                            
                         </div>
-                        <div class="col-lg-10">
-                            <div class="row" style={{border:'1px solid #9f6934'}}>
+                        <div class="col-lg-10" >
+                            <div class="row" style={{border:'1px solid #9f6934', background: '#D2B48C'}}>
                                 <div class="col-lg-10">
                                     <div class="row">
                                         {/* <div class="col-lg-6">{reply.user.name}</div> */}
                                         <div class="col-lg-4"></div>
                                     </div>        
                                 </div>
-                                { editForm.id == idx && editForm.state ? <EditCommentForm submitReply={submitReply} idx={idx} reply={reply} loadPage={loadPage}/> : <div class="col-lg-12 my-2" >
+                                { editForm.id == idx && editForm.state ? <EditCommentForm submitReply={submitReply} idx={idx} reply={reply} loadPage={loadPage}/> : <div class="col-lg-12 my-4">
                                     {reply.message}
                                 </div> }
                                 <div class="col-lg-12" >
