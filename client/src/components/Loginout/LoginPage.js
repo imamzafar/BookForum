@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 export const UserContext = React.createContext();
 
 function LoginPage(){
@@ -82,7 +82,7 @@ function LoginPage(){
             <section class="text-center">
                 <div class="container">
                     <h1>Login</h1>
-                    <p class="lead text-muted">Welcome back to Movie Maniax!</p>
+                    <p class="lead text-muted">Welcome back!</p>
                 </div>
             </section>
         
@@ -110,7 +110,7 @@ function LoginPage(){
                             &nbsp; 
                             <input type="checkbox" checked={userData.rememberMe} onChange={handleCheckbox} />                        
                             <label class='text-secondary' for='rememberMe'>Remember Me</label> &nbsp;
-                            <a href="/register">Need to Register?</a>
+                            <Link to="/registration">Need to Register?</Link>>
                         </form>
                     </div>
                 </div>

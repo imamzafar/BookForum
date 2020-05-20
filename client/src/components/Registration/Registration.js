@@ -68,7 +68,7 @@ function Registration(){
             <section class=" text-center">
                 <div class="container">
                     <h1>User Registration</h1>
-                    <p class="lead text-muted">Register and browse movies!</p>
+                    <p class="lead text-muted">Register and enjoy your stay at forum!</p>
                 </div>
             </section>
             <div className={ alertMessage.type ? `alert alert-${alertMessage.type}` : 'd-hide' } role="alert">
