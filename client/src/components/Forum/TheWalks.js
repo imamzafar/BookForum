@@ -16,18 +16,24 @@ function TheWalks() {
 
     async function loadPage(){
         const apiGetWalk = await fetch('/api/walkdata').then( result => result.json() )
-        // console.log(apiGetWalk)
+        console.log(apiGetWalk)
         apiGetWalk.forEach(element => { 
             element.createdAt = new Date(element.createdAt).toString().substring(4, 15)   
             element.updatedAt = new Date(element.updatedAt).toString().substring(4, 15) 
         });
 
-        
+        apiGetWalk.map( element => {
+            element.lastReply = element.userReply.pop();
+        }); 
+        console.log(apiGetWalk[0].userReply[0])
+        console.log(apiGetWalk[0].lastReply)
+
         // console.log(apiGetWalk[0].user.name)
         // console.log(apiGetWalk[0]._id)
-        setWalkResult(apiGetWalk)
+        setWalkResult([...apiGetWalk])
     }
     console.log(walkResult);
+    // console.log(walkResult[0].lastReply)
 
     function handleSubmit(e){
         e.preventDefault();
@@ -60,8 +66,8 @@ function TheWalks() {
                     <h2 style={{paddingTop: "10px", paddingLeft: "15px", color:"white"}}>Forum</h2>
                 </div>
                 <div class="col-lg-12 mx-auto">
-                    <h2 class="my-4">The Walks</h2>
-                    <p>Share your everyday walk stories! How much you walked, what did you see? whom you met? all interestin conversations.</p>
+                    <h2 class="my-4">A Long-Expected Party</h2>
+                    <p>Society and habits of hobbits in general and the peculiar Baggins family in particular.</p>
                 </div>
                 <div class="col-lg-10 mx-auto">
                     <div class="row mx-auto justify-content-end">
@@ -83,7 +89,8 @@ function TheWalks() {
                             <table class="table table-sm">
                                 <thead>
                                     <tr style={{height: "50px", border: "3px solid #9f6934", backgroundColor: "#9f6934", padding: "0", margin: "0", color: "white"}}>
-                                        <th  style={{ width:"40%" }}>Title</th>
+                                        <th  style={{ width:"10%" }}></th>
+                                        <th  style={{ width:"30%" }}>Title</th>
                                        
                                         <th style={{ width: "20%" }} >Replies</th>
                                         <th style={{ width: "20%" }} >Views</th>
@@ -92,19 +99,28 @@ function TheWalks() {
                                 </thead>
                                 { walkResult.length !== 0 ? walkResult.map( event => <tbody>
                                     <tr style={{ height: '80px', border: "3px solid #9f6934" }}>
-                                        <td key={event._id}>
-                                            <Link to={{ pathname: `/the-walks/${event.slug}`,
-                                                            info:{id: event._id}
-                                                            
-                                                            }}> 
-                                        {event.title} </Link><br/>
-                                        {event.user.name}<br/>
-                                        {event.createdAt}  
+                                        <td style={{padding: '20px 0 0 20px'}}><i class="fas fa-envelope-open-text fa-2x"></i></td>
+                                        <td style={{padding: '10px 0 0 0'}} key={event._id}>
+                                            <div style={{fontSize: "25px"}}>
+                                                <Link to={{ pathname: `/the-walks/${event.slug}`,
+                                                                info:{id: event._id}
+                                                                
+                                                                }}> 
+                                            <b>{event.title}</b> </Link><br/>
+                                            </div>
+                                            <div class="my-2">
+                                                {event.user.name}<br/>
+                                                {event.createdAt}  
+                                            </div>
+                                        
                                          </td>
                                         
-                                        <td>{event.userReply.length}</td>
-                                        <td>Doe</td>
-                                        <td>{event.updatedAt}</td>
+                                        <td style={{padding: '20px 0 0 0'}}>{event.userReply.length}</td>
+                                        <td style={{padding: '20px 0 0 0'}}>10</td>
+                                        <td style={{padding: '20px 0 0 0'}}>
+                                            {event.updatedAt}<br/>
+                                            {event.userReply.map( el => el.name)}
+                                            {/* {event.lastReply.name}</td> */}</td>
                                     </tr>
                                 
                                 </tbody>) : ''}

@@ -8,6 +8,8 @@ let reply = new Schema ({
         name:{ type: String },
         id: { type: String },
     },
+    name: { type: String },
+    id: { type: String },
     message: {type: String},
     comment:[
         {

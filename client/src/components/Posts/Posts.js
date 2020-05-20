@@ -32,6 +32,7 @@ function Posts(props) {
     console.log(props)
     // console.log(location) / console.log(props.location.myCustomProps)
     let postId = location.info.id;
+    localStorage.setItem("postId", postId);
 
     async function loadPage(){
         //get the main post of the page
@@ -178,16 +179,16 @@ function Posts(props) {
                         <div class="col-10" style={pageStyle.mainPost}>
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <p style={{padding: '0px'}}>{myName}</p>
+                                    <p style={{padding: '0px', fontSize: '20px'}}><b>{myName}</b></p>
                                 </div>      
-                                <div class="col-lg-3">
-                                    <small>{walkPost.createdAt}</small>
+                                <div class="col-lg-3" style={{fontSize: '20px'}}>
+                                    <small><b>{walkPost.createdAt}</b></small>
                                 </div> 
-                                <div class="col-lg-3">
-                                    <small>Replies:{numberReply}</small>
+                                <div class="col-lg-3" style={{fontSize: '20px'}} >
+                                    <small><b>Replies:{numberReply}</b></small>
                                 </div> 
-                                { editPost ? <EditPost submitForm={submitForm} walkPost={walkPost} loadPage={loadPage}/> : <div class="col-12">
-                                    <p>{walkPost.message}</p>
+                                { editPost ? <EditPost submitForm={submitForm} walkPost={walkPost} loadPage={loadPage}/> : <div class="col-12 mx-auto">
+                                    <p class="my-4" style={{fontSize: '20px'}}>{walkPost.message}</p>
                                     </div> }
                                 <div class="col-12 mt-4">
                                     
@@ -223,16 +224,24 @@ function Posts(props) {
                 </div>    
             </div>
             <div class="row mt-4">
-                <div class="col-lg-12">
+                <div class="col-lg-12 my-2">
                 {replyResult.length !== 0 ? replyResult.map( (reply, idx) => <div class="row justify-content-center">
-                        <div class="col-lg-10" style={{border:'2px solid #9f6934'}}>
-                            {reply.createdAt}
+                        <div class="col-lg-10 py-2" style={{border:'2px solid #9f6934'}}>
+                            <div class="row">
+                                <div class="col-lg-2">
+                                    <b>{reply.createdAt}</b>
+                                </div>   
+                                <div class="col-lg-2">
+                                    <b>{reply.user.name}</b>
+                                </div>     
+                            </div>
+                           
                         </div>
                         <div class="col-lg-10">
                             <div class="row" style={{border:'1px solid #9f6934'}}>
                                 <div class="col-lg-10">
                                     <div class="row">
-                                        <div class="col-lg-6">{reply.user.name}</div>
+                                        {/* <div class="col-lg-6">{reply.user.name}</div> */}
                                         <div class="col-lg-4"></div>
                                     </div>        
                                 </div>

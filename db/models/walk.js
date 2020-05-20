@@ -7,6 +7,8 @@ let walk = new Schema ({
         name:{ type: String },
         id: { type: String },
     },
+    name:{ type: String },
+    id: { type: String },
     title: String,
     message: String,
     slug: String,
@@ -31,6 +33,7 @@ let walk = new Schema ({
     ],
     likes: Number,
 },
+
 {
     timestamps: true
  });

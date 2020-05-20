@@ -39,8 +39,8 @@ function ForumHome() {
                     <h2 style={{paddingTop: "10px", paddingLeft: "15px", color:"white"}}>Forum</h2>
                 </div>
                 <div class="col-lg-12 mx-auto">
-                    <h2 class="my-4">Welcome To Woof Woof!</h2>
-                    <p>Woof Woof is a forum for dogs to socialize on net. Register to the forum and make new paw freinds!</p>
+                    <h2 class="my-4">Welcome To Books Books!</h2>
+                    <p>Books is a discussion forum for book lovers. The latest discussions are on LOTR.</p>
                 </div>
                 <div class="row ml-2">
                     <div class="col-lg-10 mx-auto">

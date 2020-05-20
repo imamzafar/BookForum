@@ -78,6 +78,7 @@ async function registerUser( userData ){
                                 .sort({_id:-1})
                                 .limit(20)
                                 .populate('userInfo', 'points userType')
+                                .populate('userReply', 'name')
                                
         return walkDataDb;
         // sort({_id:-1}).limit(20)
@@ -181,13 +182,13 @@ async function registerUser( userData ){
     async function deletePost(id, userId){
         // console.log('the [orm delete user] is', id, userId)
         const deletePostResult = await db.walk.findOneAndDelete({_id:id})
-        const deletePostFromReplyModel = await db.reply.deleteMany({ postId:id }, function(err, result) {
-            if (err) {
-              res.send(err);
-            } else {
-              res.send(result);
-            }
-          });
+        // const deletePostFromReplyModel = await db.reply.deleteMany({ postId:id }, function(err, result) {
+        //     if (err) {
+        //       res.send(err);
+        //     } else {
+        //       res.send(result);
+        //     }
+        //   });
         return {
             message: "user is deleted successfuly!"
         }
