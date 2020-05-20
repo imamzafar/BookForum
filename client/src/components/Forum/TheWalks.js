@@ -64,7 +64,7 @@ function TheWalks() {
             alertFailure('Dear guest, feel free to visit, to participate please register')
         }  
         else{
-            alertFailure('Not Enough Points to Participate in the forum')
+            alertFailure('Not Enough Points to Participate in the forum. Check your dashboard.')
         }
         
     }

@@ -15,7 +15,7 @@ function Posts(props) {
     const [ editPost, setEditPost ] = useState(false);
     const[ replyResult, setReplyResult ] = useState( [] )
     const[ numberReply, setNumberReply] = useState()
-    const[ myLike, setMyLike ] = useState('')
+    const[ myLike, setMyLike ] = useState(0)
     const[ myName, setMyName ] = useState('');
     const [alertMessage, setAlertMessage] = useState( {type: "", message: ""})
     const pageStyle = {
