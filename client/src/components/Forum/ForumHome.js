@@ -99,7 +99,7 @@ function ForumHome() {
                                             <div class="mt-4" style={{width: "80px", margin: "0 auto"}}><i class="fas fa-envelope-open-text fa-5x"></i></div>
                                         </div>
                                         <div class="col-lg-10">
-                                        <Link to="/yapping" className="nav-link" ><h3>Three Is Company</h3></Link>
+                                        <Link to="/the-walks" className="nav-link" ><h3>Three Is Company</h3></Link>
                                             <p class="ml-3">It began with the forging of the Great Rings. Three were given to the Elves, immortal, wisest and fairest of all beings. </p>
                                             <p class="ml-3">Discussions<span class="px-2">30</span>Messages<span class="px-2">60</span></p>
                                         </div>
