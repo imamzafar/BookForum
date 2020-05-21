@@ -39,7 +39,16 @@ function Navbar() {
                     <li className="nav-item">
                     <Link to="/login" className="nav-link" href="#">Login</Link>
                     </li> : 
-                    <li className="nav-item dropdown">
+                    <li className="nav-item">
+                    <Link to={`/user/${id}`} className="nav-link" href="#">Dashboard</Link>
+                    </li>}    
+
+                    {id ? 
+                    <li className="nav-item">
+                    <Link to="/logout" className="nav-link" href="#">Logout</Link>
+                    </li>: ''}                        
+            
+                    {/* <li className="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <span class="mr-1"><i class="fas fa-user"></i></span> {`${userName}`}
                     </a>
@@ -48,7 +57,7 @@ function Navbar() {
                             <div class="dropdown-divider"></div>
                             <Link to="/logout" className="nav-link" href="#">Logout</Link>
                         </div>
-                    </li>}
+                    </li>} */}
                     </ul>
                 </div>
                 </nav>

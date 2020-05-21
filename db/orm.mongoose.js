@@ -160,6 +160,13 @@ async function registerUser( userData ){
         // console.log('the [getusersData] orm is', getUsersData)
         return getUsersData;
     }
+    //GET USER DATA 
+    async function getUserData(id){
+        // console.log('user id [orm] is', id)
+        const getUserData = await db.user.findById(id).populate('userThreadWalk', 'title slug')
+        // console.log('the [getuserData] orm is', getUserData);
+        return getUserData;
+    }
 
     //update user type admin page
     async function userTypeResult(id, userType){
@@ -244,5 +251,6 @@ module.exports = {
     deletePost,
     editReplyResult,
     editPostResult,
-    deleteReply
+    deleteReply,
+    getUserData
 }

@@ -89,8 +89,17 @@ app.get('/api/users', async (req, res) => {
     const getUsers = await orm.getUsers();
     // console.log('the walk data is', getWalkData)
     res.json(getUsers);
-    let date = new Date(getUsers[0].startDate).toString().substring(4, 15)
+    // let date = new Date(getUsers[0].startDate).toString().substring(4, 15)
     // console.log(date)
+})
+
+//get the user for dashboard
+app.get('/api/userdata/:id', async (req, res) => {
+    const id = req.params.id;
+    // console.log('the user id is', id)
+    const getUserData = await orm.getUserData(id);
+    // console.log('the user data is', getWalkData)
+    res.json(getUserData);
 })
 
 //updating user type in the db
@@ -144,12 +153,9 @@ app.post('/api/editPost', async function(req, res){
 //delete reply from reply model
 app.delete('/api/deletereply/:replyId', async(req, res) =>{
     const replyId = req.params.replyId
-    // console.log('reply Post [server] is', replyId)
-    
-    const deleteReply = await orm.deleteReply(replyId);
-    
-    res.send(deleteReply)
-    
+    // console.log('reply Post [server] is', replyId) 
+    const deleteReply = await orm.deleteReply(replyId);   
+    res.send(deleteReply)   
   })
 
 app.get('/*', (req, res) => {

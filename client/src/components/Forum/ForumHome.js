@@ -42,12 +42,12 @@ function ForumHome() {
                     <h2 class="my-4">Welcome To Books Books!</h2>
                     <p>Books is a discussion forum for book lovers. The latest discussions are on LOTR.</p>
                 </div>
-                <div class="row ml-2">
-                    <div class="col-lg-10 mx-auto">
+                <div class="row ml-2 mt-4">
+                    <div class="col-lg-10 mx-auto mt-4">
                         <div class="row py-2"  style={{backgroundColor: "#90ee90", border: "1px solid #4ee44e"}}>
                             <div class="col-lg-8 my-2">
                                     <div class="row my-auto" >
-                                        <div class="col-lg-2">
+                                        <div class="col-lg-2 mt-4">
                                             <div class="mt-4" style={{width: "80px", margin: "0 auto"}}><i class="fas fa-envelope-open-text fa-5x"></i> </div>
                                         </div>
                                         <div class="col-lg-10">
