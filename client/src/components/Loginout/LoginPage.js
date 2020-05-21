@@ -110,7 +110,7 @@ function LoginPage(){
                             &nbsp; 
                             <input type="checkbox" checked={userData.rememberMe} onChange={handleCheckbox} />                        
                             <label class='text-secondary' for='rememberMe'>Remember Me</label> &nbsp;
-                            <Link to="/registration">Need to Register?</Link>>
+                            <Link to="/registration">Need to Register?</Link>
                         </form>
                     </div>
                 </div>
