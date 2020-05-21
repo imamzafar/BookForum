@@ -28,7 +28,7 @@ function TheWalks() {
 
     async function loadPage(){
         const apiGetWalk = await fetch('/api/walkdata').then( result => result.json() )
-        console.log(apiGetWalk)
+        // console.log(apiGetWalk)
         apiGetWalk.forEach(element => { 
             element.createdAt = new Date(element.createdAt).toString().substring(4, 15)   
             element.updatedAt = new Date(element.updatedAt).toString().substring(4, 15) 
@@ -38,32 +38,25 @@ function TheWalks() {
         //     let lastReply = element.userReply.pop().name;
         //     console.log(lastReply)
         // }); 
-        console.log(apiGetWalk[0].userReply[0])
-        console.log(apiGetWalk[0].lastReply)
+        // console.log(apiGetWalk[0].userReply[0])
+        // console.log(apiGetWalk[0].lastReply)
 
-        // console.log(apiGetWalk[0].user.name)
-        // console.log(apiGetWalk[0]._id)
         setWalkResult([...apiGetWalk])
     }
-    console.log(walkResult);
-    // console.log(walkResult[2].lastReply)
+    // console.log(walkResult);
 
     function handleSubmit(e){
         e.preventDefault();
         let id = localStorage.id;
         let result = walkResult.find( ele => ele.userId === id)
-        console.log('the result is', result)
-        // console.log( result.userInfo[0].points)
-        if(localStorage.id){
-            setShowForm( true );
-        }
-       
+        // console.log('the result is', result)
+               
         if( result && result.userInfo[0].points > 5){
             setShowForm( true );
         } if( !localStorage.id ){
             alertFailure('Dear guest, feel free to visit, to participate please register')
         }  
-        else{
+        if(result && result.userInfo[0].points < 5){
             alertFailure('Not Enough Points to Participate in the forum. Check your dashboard.')
         }
         
@@ -123,7 +116,7 @@ function TheWalks() {
                                         <td style={{padding: '20px 0 0 20px'}}><i class="fas fa-envelope-open-text fa-2x"></i></td>
                                         <td style={{padding: '10px 0 0 0'}} key={event._id}>
                                             <div style={{fontSize: "25px"}}>
-                                                <Link to={{ pathname: `/the-walks/${event.slug}`,
+                                                <Link to={{ pathname: `/the-walks/${event.slug}/${event._id}`,
                                                                 info:{id: event._id}
                                                                 
                                                                 }}> 

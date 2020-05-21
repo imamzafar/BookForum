@@ -1,5 +1,5 @@
 import React, {useState, useEffect, } from 'react'
-import { useLocation, useParams, Redirect} from 'react-router-dom';
+import { useLocation, useParams, Redirect, useHistory} from 'react-router-dom';
 import PostForm from './PostForm';
 import CommentForm from './CommentForm';
 import CommentArray from './CommentArray';
@@ -26,13 +26,12 @@ function Posts(props) {
    
     let params = useParams();
     let{ name }=useParams();
+    let{ postId } = useParams();
+  
     // console.log(name) // console.log(params)
    
     let location = useLocation();
-    console.log(props)
-    // console.log(location) / console.log(props.location.myCustomProps)
-    let postId = location.info.id;
-    localStorage.setItem("postId", postId);
+    // let postId = location.info.id;
 
     async function loadPage(){
         //get the main post of the page
@@ -129,7 +128,7 @@ function Posts(props) {
             .then( result=>result.json()) 
             console.log(apiDeleteReply)
         }
-        
+        loadPage();
     }
 
     function editReply(e, idx){
@@ -148,10 +147,11 @@ function Posts(props) {
         {   method: 'delete'
             
         })
-        .then( result=>result.json()) 
-        console.log(apiDeletePost)
+        .then( result=>result.json()); 
+        console.log(apiDeletePost);
+        window.location.href="/the-walks";
 
-        // return <Redirect to='/' />
+        
     }
 
     function handleEditPost(e){
