@@ -26,7 +26,7 @@ function ForumHome() {
         setLastUpdated( apiGetWalk[0].updatedAt)
 
         }
-        console.log(walkResult)
+        // console.log(walkResult)
         
         useEffect( function(){
             loadPage();
@@ -50,7 +50,7 @@ function ForumHome() {
                                         <div class="col-lg-2 mt-4">
                                             <div class="mt-4" style={{width: "80px", margin: "0 auto"}}><i class="fas fa-envelope-open-text fa-5x"></i> </div>
                                         </div>
-                                        <div class="col-lg-10">
+                                        <div class="col-lg-10 mt-2">
                                         <Link to="/the-walks" className="nav-link" ><h3>Poems by Emily Dickinson</h3></Link>
                                             <p class="ml-3">Emily Dickinson is one of America’s greatest and most original poets of all time.</p>
                                             <p class="ml-3"><b>Discussions</b><span class="px-2">{walkResult.length}</span><b>Messages</b><span class="px-2">{totalMessages}</span></p>
@@ -74,7 +74,7 @@ function ForumHome() {
                                         <div class="col-lg-2">
                                             <div class="mt-4" style={{width: "80px", margin: "0 auto"}}><i class="fas fa-envelope-open-text fa-5x"></i> </div>
                                         </div>
-                                        <div class="col-lg-10">
+                                        <div class="col-lg-10  mt-2">
                                         <Link to="/the-walks" className="nav-link" ><h3>Life of Emily Dickinson</h3></Link>
                                             <p class="ml-3">Emily Dickinson is one of America’s greatest and most original poets of all time. </p>
                                             <p class="ml-3"><b>Discussions</b><span class="px-2">10</span><b>Messages</b><span class="px-2">10</span></p>

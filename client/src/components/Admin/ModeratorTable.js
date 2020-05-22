@@ -43,7 +43,7 @@ function ModeratorTable() {
     return (
         <div class="row">
             <div class="col-lg-12">
-            <div class="row justify-contencont-center mt-2">
+            <div class="row justify-content-center mt-2">
                     <div class="col-lg-10 mt-4">
                         <table class="table table-sm">
                                 <thead>
