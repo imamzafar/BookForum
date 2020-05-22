@@ -15,7 +15,7 @@ function Posts(props) {
     const [ editPost, setEditPost ] = useState(false);
     const[ replyResult, setReplyResult ] = useState( [] )
     const[ numberReply, setNumberReply] = useState()
-    const[ myLike, setMyLike ] = useState(0)
+    const[ myLike, setMyLike ] = useState();
     const[ myName, setMyName ] = useState('');
     const [alertMessage, setAlertMessage] = useState( {type: "", message: ""})
     const pageStyle = {
@@ -97,23 +97,16 @@ function Posts(props) {
     //likes counter
     async function handleLike(e){
         e.preventDefault(); 
-        let counter = myLike
-        counter++;
-        setMyLike(counter)
-       
-        const likeData = {
-            likes : counter
-        }
-       //post likes data in the db
-        const apiLike = await fetch(`/api/counter/${postId}`, 
+
+        const apiLikeInc = await fetch(`/api/likeInc/${postId}`, 
             {   method: 'post',
                 headers: {
                     'Accept': 'application/json, text/plain, */*',
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(likeData)
-          }).then( result=>result.json());  
-        //   console.log(apiLike)
+                body: JSON.stringify()
+          }).then( result=>result.json()); 
+        loadPage();
     }
 
     async function deleteBtnPost(e, idx, replyId){
@@ -198,7 +191,7 @@ function Posts(props) {
                         <div  class="col-lg-10 col-md-10 mt-2" >
                             <div class="row justify-content-start">
                                 <div class="col-lg-1 col-md-1">
-                                    <button style={pageStyle.btn} type="submit" onClick={e => {handleLike(e)}}><i class="fas fa-thumbs-up"></i><span class="pl-2">{myLike}</span></button>
+                                    <div><button style={pageStyle.btn} type="submit" onClick={e => {handleLike(e)}}><i class="fas fa-thumbs-up"></i></button>{walkPost.likes}</div>
                                 </div>
                                 <div class="col-lg-1 col-md-1">
                                     <button onClick={function () { localStorage.id ? setShowForm(true) : setShowForm(false)}} style={pageStyle.mainBtn}>Reply</button>

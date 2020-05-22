@@ -51,6 +51,14 @@ app.get('/api/walkpost/:postId', async (req, res) => {
     res.json(getWalkPost);
 })
 
+//like data
+app.post('/api/likeInc/:postId', async (req, res) => {
+    const data = req.params.postId
+    // console.log('the postId data is [server]', data)
+    const getLikeResult = await orm.getLikeResult(data);
+    res.json(getLikeResult);
+})
+
 //post user replyies to thread to reply model
 app.post('/api/reply', async function(req, res){
     const postData = req.body;
@@ -68,14 +76,14 @@ app.get('/api/replydata/:postId', async (req, res) => {
 })
 
 //post likes to reply model
-app.post('/api/counter/:postId', async function(req, res){
-    const number = req.body;
-    // console.log('the [number] is', number)
-    const postId = req.params.postId;
-    // console.log('the [server postId] is', postId)
-    const counterData = await orm.counterData( number, postId  );
-    res.send(counterData);
-})
+// app.post('/api/counter/:postId', async function(req, res){
+//     const number = req.body;
+//     // console.log('the [number] is', number)
+//     const postId = req.params.postId;
+//     // console.log('the [server postId] is', postId)
+//     const counterData = await orm.counterData( number, postId  );
+//     res.send(counterData);
+// })
 
 //post comments to replies to reply model
 app.post('/api/comment', async function(req, res){

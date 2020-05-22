@@ -91,6 +91,19 @@ async function registerUser( userData ){
         // console.log('the getwalkpost orm is', getWalkPost)
         return getWalkPost;
     }
+    
+    //get like data
+    async function getLikeResult(data){
+        // console.log(data)
+        const postLikeData = await db.walk.findByIdAndUpdate({ _id:data },{$inc: { likes: 1 }})
+        
+        
+        return {
+            message: "likes updated successfuly!",
+            likes: postLikeData.likes
+        }
+    }
+
 
     //post replies to post/thread
     async function replyData(data){
@@ -126,14 +139,14 @@ async function registerUser( userData ){
     }
 
     //updates likes in the model in reply
-    async function counterData(number, postId){
-        // console.log('the [orm number] is', number)
-        const num = number.likes;
-        const counterDataDB = await db.walk.findByIdAndUpdate({_id:postId}, {likes: num})
-        return {
-            message: "likes updated successfuly!"
-        }
-    }
+    // async function counterData(number, postId){
+    //     // console.log('the [orm number] is', number)
+    //     const num = number.likes;
+    //     const counterDataDB = await db.walk.findByIdAndUpdate({_id:postId}, {likes: num})
+    //     return {
+    //         message: "likes updated successfuly!"
+    //     }
+    // }
 
     //post comment
     async function commentResult(data){
@@ -244,7 +257,7 @@ module.exports = {
     getWalkPost,
     replyData, 
     getReplyData,
-    counterData,
+    // counterData,
     commentResult,
     getUsers,
     userTypeResult, 
@@ -252,5 +265,6 @@ module.exports = {
     editReplyResult,
     editPostResult,
     deleteReply,
-    getUserData
+    getUserData,
+    getLikeResult
 }
