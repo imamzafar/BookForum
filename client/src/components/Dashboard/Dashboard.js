@@ -26,11 +26,13 @@ function Dashboard() {
         setCreatedAt(created);
         setUpdatedAt(updated);
         setUserPosts(apiUserData.userThreadWalk)
-        localStorage.setItem("points", userData.points)
-        localStorage.setItem("type", userData.userType)
+        localStorage.setItem("type", apiUserData.userType)
+        localStorage.setItem("points", apiUserData.points)
+        
+        console.log(apiUserData)
     }
-    console.log(userPosts);
-
+    console.log(userData);
+    
 
 
     return (
@@ -82,7 +84,7 @@ function Dashboard() {
                     </div>    
                     
                 </div> :
-                <div>
+                <div class="col-lg-12">
                     No Posts to show. 
                 </div> }   
             </div>  
