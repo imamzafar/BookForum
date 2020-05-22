@@ -45,23 +45,24 @@ function TheWalks() {
     }
     // console.log(walkResult);
 
-    function handleSubmit(e){
+    async function handleSubmit(e){
         e.preventDefault();
         let id = localStorage.id;
-        let result = walkResult.find( ele => ele.userId === id)
-        // console.log('the result is', result)
+
         if(localStorage.type == "admin"){
             setShowForm( true );
-        }       
-        if( result && result.userInfo[0].points > 5){
-            setShowForm( true );
-        } if( !localStorage.id ){
+        } else if( !localStorage.id ) {
             alertFailure('Dear guest, feel free to visit, to participate please register')
-        }  
-        if(result && result.userInfo[0].points < 5){
-            alertFailure('Not Enough Points to Participate in the forum. Check your dashboard.')
+        } else {
+                const apiPoints = await fetch(`/api/points/${id}`).then( result => result.json() )
+                // console.log(apiPoints);
+            
+                if( apiPoints >= 5){
+                    setShowForm( true );
+                }  else if(apiPoints < 5){
+                    alertFailure('Not Enough Points to Participate in the forum. Check your dashboard.')
+                } 
         }
-        
     }
      
     useEffect( function(){

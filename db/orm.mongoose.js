@@ -181,6 +181,14 @@ async function registerUser( userData ){
         return getUserData;
     }
 
+    //GET POINTS
+    async function getPointsResult(id){
+        // console.log('user id [orm] is', id)
+        const getPointsData = await db.user.findById( {_id:id} )
+        // console.log('the [getuserData] orm is', getUserData);
+        return getPointsData.points;
+    }
+
     //update user type admin page
     async function userTypeResult(id, userType){
         // console.log('the [orm userType] is', userType)
@@ -266,5 +274,6 @@ module.exports = {
     editPostResult,
     deleteReply,
     getUserData,
-    getLikeResult
+    getLikeResult,
+    getPointsResult
 }

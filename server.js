@@ -75,6 +75,14 @@ app.get('/api/replydata/:postId', async (req, res) => {
     res.json(getReplyData);
 })
 
+//get points for walk post
+app.get('/api/points/:id', async (req, res) => {
+    const id = req.params.id;
+    const getPointsResult = await orm.getPointsResult(id);
+    // console.log('the postId data is [server]', data)
+    res.json(getPointsResult);
+})
+
 //post likes to reply model
 // app.post('/api/counter/:postId', async function(req, res){
 //     const number = req.body;
