@@ -51,8 +51,8 @@ function Posts(props) {
         setNumberReply(replyArray);   
         setMyLike(apiGetWalkPost.likes);     
     }
-    console.log(walkPost);
-    console.log('the reply result is',replyResult)
+    // console.log(walkPost);
+    // console.log('the reply result is',replyResult)
     //submitForm for the Post reply
 
     function submitForm(e){

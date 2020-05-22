@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 
 function EditPost(props) {
-    console.log(props.walkPost)
+    // console.log(props.walkPost)
     const[ editPost, setEditPost ] = useState( {message:props.walkPost.message}  )
 
 

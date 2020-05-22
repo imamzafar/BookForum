@@ -43,7 +43,7 @@ function TheWalks() {
 
         setWalkResult([...apiGetWalk])
     }
-    console.log(walkResult);
+    // console.log(walkResult);
 
     function handleSubmit(e){
         e.preventDefault();

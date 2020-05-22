@@ -11,7 +11,7 @@ function CommentForm(props) {
     async function updateThread(e){
         e.preventDefault();
         let userComment = e.target.value;
-        console.log(userComment);
+        // console.log(userComment);
         setAddReply({comment: userComment})
     }
     // console.log(addReply);

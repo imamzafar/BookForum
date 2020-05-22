@@ -34,7 +34,7 @@ function PostForm(props) {
                 },
                 body: JSON.stringify(postData)
           }).then( result=>result.json()) ; 
-          console.log(apiReply.message);
+        //   console.log(apiReply.message);
          
             if(apiReply.message){
                 props.alertSuccess('Thank You! Your reply posted sucessfully.');

@@ -29,9 +29,9 @@ function Dashboard() {
         localStorage.setItem("type", apiUserData.userType)
         localStorage.setItem("points", apiUserData.points)
         
-        console.log(apiUserData)
+        // console.log(apiUserData)
     }
-    console.log(userData);
+    // console.log(userData);
     
 
 
