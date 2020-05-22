@@ -8,11 +8,12 @@ function Navbar() {
 
     let id = localStorage.id
     let userName = localStorage.name;
+    let email = localStorage.email;
 
     return (
         <div>
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                <Link to="/" className="navbar-brand" href="#">Book <i class="fas fa-book-reader"></i> Book</Link>
+                <Link to="/" className="navbar-brand" href="#">Emily <i class="fas fa-book-reader"></i> Dickinson</Link>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" onClick={()=>setShown(!isShown)}>
                     <span className="navbar-toggler-icon"></span>
                 </button>
@@ -31,7 +32,7 @@ function Navbar() {
                     <li className="nav-item">
                         <Link to="/registration" className="nav-link" href="#">Register</Link>
                     </li> : ''}
-                    { id == "5ec39c638bbb23337445c8d5" ?
+                    { email == "april@test.com" ?
                     <li className="nav-item">
                         <Link to="/admin" className="nav-link" href="#">Admin</Link>
                     </li> : ''}

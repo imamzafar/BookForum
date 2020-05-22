@@ -39,8 +39,8 @@ function ForumHome() {
                     <h2 style={{paddingTop: "10px", paddingLeft: "15px", color:"white"}}>Forum</h2>
                 </div>
                 <div class="col-lg-12 mx-auto">
-                    <h2 class="my-4">Welcome To Books Books!</h2>
-                    <p>Books is a discussion forum for book lovers. The latest discussions are on LOTR.</p>
+                    <h2 class="my-4">Welcome To The Poems Forum!</h2>
+                    <p>Emily Dickinson is one of America’s greatest and most original poets of all time.</p>
                 </div>
                 <div class="row ml-2 mt-4">
                     <div class="col-lg-10 mx-auto mt-4">
@@ -51,8 +51,8 @@ function ForumHome() {
                                             <div class="mt-4" style={{width: "80px", margin: "0 auto"}}><i class="fas fa-envelope-open-text fa-5x"></i> </div>
                                         </div>
                                         <div class="col-lg-10">
-                                        <Link to="/the-walks" className="nav-link" ><h3>A Long-Expected Parting</h3></Link>
-                                            <p class="ml-3">It began with the forging of the Great Rings. Three were given to the Elves, immortal, wisest and fairest of all beings. </p>
+                                        <Link to="/the-walks" className="nav-link" ><h3>Poems by Emily Dickinson</h3></Link>
+                                            <p class="ml-3">Emily Dickinson is one of America’s greatest and most original poets of all time.</p>
                                             <p class="ml-3"><b>Discussions</b><span class="px-2">{walkResult.length}</span><b>Messages</b><span class="px-2">{totalMessages}</span></p>
                                         </div>
                                     </div>     
@@ -60,7 +60,7 @@ function ForumHome() {
                             <div class="col-lg-4 my-2" style={{borderLeft: "2px solid #9f6934"}}>
                                 <div class="row my-auto"   >
                                     <div class="col-lg-12 ml-3 mt-4">
-                                        <p><b>Latest:</b><span class="px-2">{lastName}</span><span class="px-2">{lastUpdated}</span></p>
+                                        <p><b>Latest by:</b><span class="px-2">{lastName}</span><b></b><span class="px-2">{lastUpdated}</span></p>
                                     </div>
                                     
                                 </div>
@@ -75,16 +75,16 @@ function ForumHome() {
                                             <div class="mt-4" style={{width: "80px", margin: "0 auto"}}><i class="fas fa-envelope-open-text fa-5x"></i> </div>
                                         </div>
                                         <div class="col-lg-10">
-                                        <Link to="/the-walks" className="nav-link" ><h3>The Shadow of the Past</h3></Link>
-                                            <p class="ml-3">It began with the forging of the Great Rings. Three were given to the Elves, immortal, wisest and fairest of all beings. </p>
-                                            <p class="ml-3">Discussions<span class="px-2">30</span>Messages<span class="px-2">60</span></p>
+                                        <Link to="/the-walks" className="nav-link" ><h3>Life of Emily Dickinson</h3></Link>
+                                            <p class="ml-3">Emily Dickinson is one of America’s greatest and most original poets of all time. </p>
+                                            <p class="ml-3"><b>Discussions</b><span class="px-2">10</span><b>Messages</b><span class="px-2">10</span></p>
                                         </div>
                                     </div>     
                             </div>          
                             <div class="col-lg-4 my-2" style={{borderLeft: "2px solid #9f6934"}}>
                                 <div class="row my-auto">
                                     <div class="col-lg-12  ml-3 mt-4">
-                                        <p>Latest:<span class="px-2"></span><span class="px-2">Time</span></p>
+                                    <p><b>Latest by:</b><span class="px-2">{lastName}</span><b></b><span class="px-2">{lastUpdated}</span></p>
                                     </div>
                                     
                                 </div>
@@ -99,16 +99,16 @@ function ForumHome() {
                                             <div class="mt-4" style={{width: "80px", margin: "0 auto"}}><i class="fas fa-envelope-open-text fa-5x"></i></div>
                                         </div>
                                         <div class="col-lg-10">
-                                        <Link to="/the-walks" className="nav-link" ><h3>Three Is Company</h3></Link>
-                                            <p class="ml-3">It began with the forging of the Great Rings. Three were given to the Elves, immortal, wisest and fairest of all beings. </p>
-                                            <p class="ml-3">Discussions<span class="px-2">30</span>Messages<span class="px-2">60</span></p>
+                                        <Link to="/the-walks" className="nav-link" ><h3>Movie</h3></Link>
+                                            <p class="ml-3">Emily Dickinson is one of America’s greatest and most original poets of all time.</p>
+                                            <p class="ml-3"><b>Discussions</b><span class="px-2">10</span><b>Messages</b><span class="px-2">10</span></p>
                                         </div>
                                     </div>     
                             </div>          
                             <div class="col-lg-4 my-2" style={{borderLeft: "2px solid #9f6934"}}>
                                 <div class="row my-auto">
                                     <div class="col-lg-12  ml-3 mt-4">
-                                        <p>Latest:<span class="px-2"></span><span class="px-2">Time</span></p>
+                                    <p><b>Latest by:</b><span class="px-2">{lastName}</span><b></b><span class="px-2">{lastUpdated}</span></p>
                                     </div>
                                     
                                 </div>

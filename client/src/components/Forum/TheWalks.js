@@ -35,15 +35,15 @@ function TheWalks() {
         });
 
         // apiGetWalk.map( element => {
-        //     let lastReply = element.userReply.pop().name;
-        //     console.log(lastReply)
+        //     element.userReply = element.userReply.pop();
+        //     // console.log(lastReply)
         // }); 
         // console.log(apiGetWalk[0].userReply[0])
         // console.log(apiGetWalk[0].lastReply)
 
         setWalkResult([...apiGetWalk])
     }
-    // console.log(walkResult);
+    console.log(walkResult);
 
     function handleSubmit(e){
         e.preventDefault();
@@ -80,8 +80,8 @@ function TheWalks() {
                     </div>
                 </div>
                 <div class="col-lg-12 mx-auto">
-                    <h2 class="my-4">A Long-Expected Party</h2>
-                    <p>Society and habits of hobbits in general and the peculiar Baggins family in particular.</p>
+                    <h2 class="my-4">Poems by Emily Dickinson</h2>
+                    <p>Like most writers, Emily Dickinson wrote about what she knew and about what intrigued her. </p>
                 </div>
                 <div class="col-lg-10 mx-auto">
                     <div class="row mx-auto justify-content-end">
@@ -106,9 +106,9 @@ function TheWalks() {
                                         <th  style={{ width:"10%" }}></th>
                                         <th  style={{ width:"30%" }}>Title</th>
                                        
-                                        <th style={{ width: "20%" }} >Replies</th>
-                                        <th style={{ width: "20%" }} >Views</th>
-                                        <th style={{ width: "20%" }} >Last Activity</th>
+                                        <th class="text-center" style={{ width: "20%" }} >Replies</th>
+                                        <th class="text-center" style={{ width: "20%" }} >Views</th>
+                                        <th class="text-center" style={{ width: "20%" }} >Last Activity</th>
                                     </tr>
                                 </thead>
                                 { walkResult.length !== 0 ? walkResult.map( event => <tbody>
@@ -129,12 +129,14 @@ function TheWalks() {
                                         
                                          </td>
                                         
-                                        <td style={{padding: '20px 0 0 0'}}>{event.userReply.length}</td>
-                                        <td style={{padding: '20px 0 0 0'}}>10</td>
-                                        <td style={{padding: '20px 0 0 0'}}>
+                                        <td class="text-center" style={{padding: '20px 0 0 0'}}>{event.userReply.length}</td>
+                                        <td class="text-center" style={{padding: '20px 0 0 0'}}>10</td>
+                                        <td class="text-center" style={{padding: '20px 0 0 0'}}>
                                             {event.updatedAt}<br/>
-                                            {/* {event.userReply.map( el => el.name)} */}
-                                            {() => {return event.userReply.pop().name}}</td>
+                                            {/* {event.userReply.map( el => el.name)}</td> */}
+                                            {function() 
+                                                {event.userReply.pop();
+                                                return event.userReply[0].name; }}</td>
                                     </tr>
                                 
                                 </tbody>) : ''}
