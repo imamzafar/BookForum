@@ -27,7 +27,7 @@ function Dashboard() {
         setUpdatedAt(updated);
         setUserPosts(apiUserData.userThreadWalk)
         localStorage.setItem("points", userData.points)
-        localStorage.setItem("userType", userData.userType)
+        localStorage.setItem("type", userData.userType)
     }
     console.log(userPosts);
 

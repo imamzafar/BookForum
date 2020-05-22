@@ -50,7 +50,9 @@ function TheWalks() {
         let id = localStorage.id;
         let result = walkResult.find( ele => ele.userId === id)
         // console.log('the result is', result)
-               
+        if(localStorage.type == "admin"){
+            setShowForm( true );
+        }       
         if( result && result.userInfo[0].points > 5){
             setShowForm( true );
         } if( !localStorage.id ){
