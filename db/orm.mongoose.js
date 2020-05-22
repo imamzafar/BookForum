@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const bcrypt = require ( 'bcrypt' );
 
 mongoose.connect(`mongodb://localhost:27017/woofwoof`, {useNewUrlParser: true, useFindAndModify: false});
-// mongoose.connect(process.env.MONGODB_URI, {useNewUrlParser: true});
+mongoose.connect(process.env.MONGODB_URI, {useNewUrlParser: true});
 const db = require( './models' );
 
 async function registerUser( userData ){
