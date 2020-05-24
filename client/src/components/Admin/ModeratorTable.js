@@ -29,7 +29,7 @@ function ModeratorTable() {
         // console.log('sort array is', pointsSort)
         setUsers([...pointsSort])
     }
-    console.log(users);
+    // console.log(users);
 
     function handleDateChange(e){
         e.preventDefault();
