@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const bcrypt = require ( 'bcrypt' );
 
 mongoose.connect(`mongodb://localhost:27017/woofwoof`, {useNewUrlParser: true, useFindAndModify: false});
-mongoose.connect(process.env.MONGODB_URI, {useNewUrlParser: true});
+// mongoose.connect(process.env.MONGODB_URI, {useNewUrlParser: true});
 const db = require( './models' );
 
 async function registerUser( userData ){
@@ -161,6 +161,7 @@ async function registerUser( userData ){
        } 
 
         const postCommentToReply = await db.reply.findOneAndUpdate({ $and: [{_id:data.replyId}, {postId:data.postId}] }, {$push: {comment: commentData}}) 
+        const commentIncData = await db.user.findByIdAndUpdate({ _id:data.userId },{$inc: { points: 1 }})
         return{
             message: "post submited successfully!"
         }
