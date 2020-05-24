@@ -72,16 +72,22 @@ function TheWalks() {
     // console.log(walkResult)
     // console.log(walkResult._id)
     return (
+
+        <div>
+  
+         <div style={{textAlign: "center"}}class={alertMessage.type ? `alert alert-${alertMessage.type}` : 'd-hide'  } role="alert" >
+                        {alertMessage.message}
+        </div>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-12 mx-auto" style={{height: "50px", backgroundColor: "#9f6934", padding: "0", margin: "0"}}>
+                <div class="col-lg-12" style={{height: "50px", backgroundColor: "#9f6934", padding: "0", margin: "0"}}>
                     <h2 style={{paddingTop: "10px", paddingLeft: "15px", color:"white"}}>Forum</h2>
                 </div>
-                <div class="row mx-auto">
-                    <div class={alertMessage.type ? `alert alert-${alertMessage.type}` : 'd-hide'  } role="alert" >
+                
+                    {/* <div class={alertMessage.type ? `alert alert-${alertMessage.type}` : 'd-hide'  } role="alert" >
                         {alertMessage.message}
-                    </div>
-                </div>
+                    </div> */}
+               
                 <div class="col-lg-12 mx-auto">
                     <h2 class="my-4">Poems by Emily Dickinson</h2>
                     <p>Like most writers, Emily Dickinson wrote about what she knew and about what intrigued her. </p>
@@ -89,7 +95,7 @@ function TheWalks() {
                 <div class="col-lg-10 mx-auto">
                     <div class="row mx-auto justify-content-end">
                         {/* <button onClick={function(){localStorage.points > 5 ? setShowForm(true) : setShowForm(false); alert('Not enough points to start a new thread')}}>New Thread</button> */}
-                        <button onClick={handleSubmit}>New Post</button><br/>
+                        <button style={{background: '#90ee90', border: '3px solid #9f6934', padding: '10px 15px', boxShadow: '3px 3px #9E9E9E'}} onClick={handleSubmit}> <i class="fas fa-pen-nib"></i> New Post</button><br/>
                         {showForm ? <WalkForm submitThread ={submitThread} loadPage={loadPage}/> : ''}
                     </div>
                 </div>
@@ -148,6 +154,7 @@ function TheWalks() {
                 </div>         
             </div>
         </div>
+     </div>      
     )
 }
 

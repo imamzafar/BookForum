@@ -151,16 +151,19 @@ function Posts(props) {
     }
    
     return (
+        <div>
+            <div style={{textAlign: 'center'}} class={alertMessage.type ? `alert alert-${alertMessage.type}` : 'd-hide'  } role="alert" >
+                    {alertMessage.message}
+            </div>
+      
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-12 mx-auto" style={{height: "50px", backgroundColor: "#9f6934", padding: "0", margin: "0"}}>
+                <div class="col" style={{height: "50px", backgroundColor: "#9f6934", padding: "0", margin: "0"}}>
                     <h2 style={{paddingTop: "10px", paddingLeft: "15px", color:"white"}}>Forum</h2>
                 </div>
-                <div class="row mx-auto">
-                    <div class={alertMessage.type ? `alert alert-${alertMessage.type}` : 'd-hide'  } role="alert" >
-                        {alertMessage.message}
-                    </div>
-                </div>
+                
+                   
+               
                 
                 <div class="col-lg-12 mx-auto">
                     <div class="row justify-content-center">
@@ -258,7 +261,8 @@ function Posts(props) {
                 </div>    
             </div>
                         
-        </div>    
+        </div> 
+    </div>       
     )
 }
 

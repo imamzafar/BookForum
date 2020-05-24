@@ -13,6 +13,11 @@ function LogoutPage(){
     // call the api to logout (and clear session)
     async function logoutRequest(){
         localStorage.id = "";
+        localStorage.type = "";
+        if(localStorage.email == 'april@test.com'){
+            localStorage.email="";
+        };
+        localStorage.points = "";
         setTimeout( function(){ setIsLoggedOut(true); }, 1000 );
     }
     
