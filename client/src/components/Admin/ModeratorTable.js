@@ -33,6 +33,12 @@ function ModeratorTable() {
 
     function handleDateChange(e){
         e.preventDefault();
+        setUsers( [] );
+        let daysSort = users.sort( function(x, y){
+            return y.MemberSince - x.MemberSince
+        });
+
+        setUsers([...daysSort])
 
     }
     useEffect( function(){
