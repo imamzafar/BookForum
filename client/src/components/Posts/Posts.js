@@ -113,7 +113,7 @@ function Posts(props) {
         e.preventDefault();
         let id = e.target.id; 
         // console.log(id)
-        if(localStorage.id == id){
+        if(localStorage.id == id || localStorage.type === 'admin'){
             const apiDeleteReply = await fetch(`/api/deletereply/${replyId}`, 
             {   method: 'delete'
                 
@@ -142,9 +142,7 @@ function Posts(props) {
         })
         .then( result=>result.json()); 
         console.log(apiDeletePost);
-        window.location.href="/the-walks";
-
-        
+        window.location.href="/the-walks";    
     }
 
     function handleEditPost(e){
