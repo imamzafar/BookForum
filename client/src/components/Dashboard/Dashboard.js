@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { Link, useParams, useLocation} from 'react-router-dom';
+import { Link, useParams, useLocation, Redirect} from 'react-router-dom';
 
 
 function Dashboard() {
@@ -13,6 +13,10 @@ function Dashboard() {
     useEffect( function(){
         loadPage();
     }, [] );
+
+    if(localStorage.id == ''){
+        return <Redirect to='/login' />
+    }
 
     async function loadPage(){
         const apiUserData = await fetch(`/api/userdata/${id}`).then( result => result.json() )

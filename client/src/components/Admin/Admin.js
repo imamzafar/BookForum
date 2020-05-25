@@ -1,10 +1,16 @@
 import React from 'react'
+import { Redirect} from 'react-router-dom';
 import SearchForm from './SearchForm'
 import ModeratorTable from './ModeratorTable'
 
 
 
 function Admin() {
+
+    if(localStorage.id == ''){
+        return <Redirect to='/login' />
+    }
+
     return (
         <div class="row">
             <div class="col-lg-12">
