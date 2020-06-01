@@ -32,20 +32,20 @@ click here for a video walkthrough - https://www.loom.com/share/84f61194112c43d9
 
 1. clone the project
 
-\$ git clone https://github.com/nmoras/BookForum.git
+    \$ git clone https://github.com/nmoras/BookForum.git
 
 2. Switch to directory
 
-\$ cd BookForum
+    \$ cd BookForum
 
 3. Install the dependencies
 
-- open server.js file in terminal, run the command - \$ npm install
-- open 'client' folder in in terminal, run the command - \$ npm install
+    * open server.js file in terminal, run the command - \$ npm install
+    * open 'client' folder in in terminal, run the command - \$ npm install
 
 4. Run it on the local:
-   open 'client' folder in terminal enter the command - $ npm start
-open server.js file in terminal, enter the command - $ node server.js
+    * open 'client' folder in terminal enter the command - $ npm start
+    * open server.js file in terminal, enter the command - $ node server.js
 
 Open http://localhost:3000 in your browser to see it in action.
 
