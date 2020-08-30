@@ -126,8 +126,7 @@ function TheWalks() {
                                         <td style={{padding: '10px 0 0 0'}} key={event._id}>
                                             <div style={{fontSize: "25px"}}>
                                                 <Link to={{ pathname: `/the-walks/${event.slug}/${event._id}`,
-                                                                info:{id: event._id}
-                                                                
+                                                                info:{id: event._id}                   
                                                                 }}> 
                                             <b>{event.title}</b> </Link><br/>
                                             </div>

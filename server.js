@@ -7,6 +7,8 @@ const orm = require( './db/orm.mongoose' );
 const PORT = process.env.PORT || 8080;
 const app = express();
 // var server = app.listen( PORT, function(){ console.log( `[Woof woof], http://localhost:${PORT}` ); });
+
+//express.static()is a function that takes a path, and returns a middleware that serves all files in that path to /
 app.use( express.static('client/build/') );
 app.use( express.static('./client/build/') );
 // app.use(express.static(path.join(__dirname, "client/src/components/Genre")));

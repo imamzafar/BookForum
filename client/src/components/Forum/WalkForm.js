@@ -1,7 +1,6 @@
 import React,{useState} from 'react'
 
-function WalkForm(props) {
-    
+function WalkForm(props) {  
     const [myThread, setMyThread] = useState( {title: "", message: ""});
     const [alertMessage, setAlertMessage] = useState( {type: "", message: ""})
        

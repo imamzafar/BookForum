@@ -2,7 +2,18 @@ const mongoose = require('mongoose');
 const bcrypt = require ( 'bcrypt' );
 
 mongoose.connect(`mongodb://localhost:27017/woofwoof`, {useNewUrlParser: true, useFindAndModify: false});
-mongoose.connect(process.env.MONGODB_URI, {useNewUrlParser: true});
+// mongoose.connect(process.env.MONGODB_URI, {useNewUrlParser: true});
+
+const uri = process.env.ATLAS_URI;
+
+mongoose.connect(uri, { useNewUrlParser: true, 
+                        useCreateIndex: true, 
+                        useUnifiedTopology: true });
+    const connection = mongoose.connection;
+    connection.once('open', () => {
+      console.log("MongoDB database connection established successfully");
+    })
+
 const db = require( './models' );
 
 async function registerUser( userData ){
