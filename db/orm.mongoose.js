@@ -4,10 +4,10 @@ const bcrypt = require ( 'bcrypt' );
 // mongoose.connect(`mongodb://localhost:27017/woofwoof`, {useNewUrlParser: true, useFindAndModify: false});
 // mongoose.connect(process.env.MONGODB_URI, {useNewUrlParser: true});
 
-const uri = `mongodb+srv://xyz:xyz@cluster0.jeuob.mongodb.net/trial?retryWrites=true&w=majority`;
+// const uri = `mongodb+srv://xyz:xyz@cluster0.jeuob.mongodb.net/trial?retryWrites=true&w=majority`;
 
 
-mongoose.connect(uri, { useNewUrlParser: true, 
+mongoose.connect(process.env.ATLAS_URI, { useNewUrlParser: true, 
                         useCreateIndex: true, 
                         useUnifiedTopology: true });
     const connection = mongoose.connection;
