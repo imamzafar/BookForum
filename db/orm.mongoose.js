@@ -5,9 +5,14 @@ const bcrypt = require ( 'bcrypt' );
 // mongoose.connect(process.env.MONGODB_URI, {useNewUrlParser: true});
 
 // const uri = `mongodb+srv://xyz:xyz@cluster0.jeuob.mongodb.net/trial?retryWrites=true&w=majority`;
+// const uri = process.env.ATLAS_URI
+//
+// mongoose.connect(`mongodb://${process.env.movieTracker}`,{useNewUrlParser: true});
 
+const uri = `${process.env.ATLAS_URI}`
+console.log('the uri is', uri)
 
-mongoose.connect(`process.env.ATLAS_URI`, { useNewUrlParser: true, 
+mongoose.connect(uri, { useNewUrlParser: true, 
                         useCreateIndex: true, 
                         useUnifiedTopology: true });
     const connection = mongoose.connection;
