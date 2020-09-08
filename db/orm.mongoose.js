@@ -9,9 +9,7 @@ const bcrypt = require ( 'bcrypt' );
 //
 // mongoose.connect(`mongodb://${process.env.movieTracker}`,{useNewUrlParser: true});
 
-// const uri = `${process.env.ATLAS_URI}`
-const uri = process.env.ATLAS_URI
-console.log('the uri is', uri)
+const uri = `${process.env.ATLAS_URI}`
 
 mongoose.connect(uri, { useNewUrlParser: true, 
                         useCreateIndex: true, 
