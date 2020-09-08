@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require ( 'bcrypt' );
-
+const keys = require('./keys')
 // mongoose.connect(`mongodb://localhost:27017/woofwoof`, {useNewUrlParser: true, useFindAndModify: false});
 // mongoose.connect(process.env.MONGODB_URI, {useNewUrlParser: true});
 
@@ -9,7 +9,8 @@ const bcrypt = require ( 'bcrypt' );
 //
 // mongoose.connect(`mongodb://${process.env.movieTracker}`,{useNewUrlParser: true});
 
-const uri = `${process.env.ATLAS_URI}`
+// const uri = `${process.env.ATLAS_URI}`
+const uri = keys.mongodb.DB_URI
 
 mongoose.connect(uri, { useNewUrlParser: true, 
                         useCreateIndex: true, 
