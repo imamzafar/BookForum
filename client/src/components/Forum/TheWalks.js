@@ -3,7 +3,7 @@ import WalkForm from './WalkForm';
 import { Link, useParams, useLocation} from 'react-router-dom';
 
 
-function TheWalks() {
+const TheWalks = () => {
     const location = useLocation();
     const[showForm, setShowForm] = useState(false);
     const [ walkResult, setWalkResult ] = useState([])
@@ -28,7 +28,7 @@ function TheWalks() {
 
     async function loadPage(){
         const apiGetWalk = await fetch('/api/walkdata').then( result => result.json() )
-        console.log(apiGetWalk)
+        // console.log(apiGetWalk)
         apiGetWalk.forEach(element => { 
             element.createdAt = new Date(element.createdAt).toString().substring(4, 15)   
             element.updatedAt = new Date(element.updatedAt).toString().substring(4, 15) 
@@ -43,7 +43,7 @@ function TheWalks() {
 
         setWalkResult([...apiGetWalk])
     }
-    console.log(walkResult);
+    // console.log(walkResult);
 
     async function handleSubmit(e){
         e.preventDefault();
