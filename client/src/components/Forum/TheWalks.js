@@ -10,25 +10,25 @@ function TheWalks() {
     const [alertMessage, setAlertMessage] = useState( {type: "", message: ""})
    
     
-    function submitThread(e){
+    const submitThread = (e) => {
         e.preventDefault();
         setShowForm( false );
     }
 
-    function alertSuccess(msg){
+   const alertSuccess = (msg) => {
         setAlertMessage({type: 'success', message: msg})
         setTimeout( function(){ setAlertMessage( {} ); }, 2000 );
     }
 
     //passing data from child to parent
-    function alertFailure(msg){
+    const alertFailure = (msg) => {
         setAlertMessage({type: 'danger', message: msg})
         setTimeout( function(){ setAlertMessage({}); }, 2000 );
     }
 
     async function loadPage(){
         const apiGetWalk = await fetch('/api/walkdata').then( result => result.json() )
-        // console.log(apiGetWalk)
+        console.log(apiGetWalk)
         apiGetWalk.forEach(element => { 
             element.createdAt = new Date(element.createdAt).toString().substring(4, 15)   
             element.updatedAt = new Date(element.updatedAt).toString().substring(4, 15) 
@@ -43,7 +43,7 @@ function TheWalks() {
 
         setWalkResult([...apiGetWalk])
     }
-    // console.log(walkResult);
+    console.log(walkResult);
 
     async function handleSubmit(e){
         e.preventDefault();
