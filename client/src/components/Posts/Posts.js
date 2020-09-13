@@ -26,12 +26,14 @@ function Posts(props) {
    
     let params = useParams();
     let{ name }=useParams();
+    
     let{ postId } = useParams();
   
     // console.log(name) // console.log(params)
    
     let location = useLocation();
-    // let postId = location.info.id;
+   console.log('location is', location)
+   console.log('params is', params)
 
     async function loadPage(){
         //get the main post of the page

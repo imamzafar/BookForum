@@ -5,7 +5,7 @@ import ModeratorTable from './ModeratorTable'
 
 
 
-function Admin() {
+const Admin = () => {
 
     if(localStorage.id == ''){
         return <Redirect to='/login' />

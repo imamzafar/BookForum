@@ -2,10 +2,10 @@ import React, {useState, useEffect} from 'react'
 import TableDiv from './TableDiv';
 
 
-function ModeratorTable() {
+const ModeratorTable= () => {
     const[ users, setUsers] = useState( [] );
 
-    async function loadPage(){
+    const loadPage = async () => {
         const apiGetUsers = await fetch('/api/users').then( result => result.json() );
         
         // console.log(apiGetUsers);
@@ -19,7 +19,7 @@ function ModeratorTable() {
     }
     // console.log('[users]', users);
 
-    function handlePointsChange(e){
+    const handlePointsChange = (e) => {
         e.preventDefault();
         setUsers( []);
         // console.log('the empyty array is', users)
@@ -31,7 +31,7 @@ function ModeratorTable() {
     }
     // console.log(users);
 
-    function handleDateChange(e){
+    const handleDateChange = (e) => {
         e.preventDefault();
         setUsers( [] );
         let daysSort = users.sort( function(x, y){
