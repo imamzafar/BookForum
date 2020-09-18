@@ -1,11 +1,11 @@
 import React, {useState} from 'react'
 
 
-function EditCommentForm(props) {
+const EditCommentForm = (props) => {
     // console.log(props.reply)
     const[ editReply, setEditReply ] = useState( {message: props.reply.message} )
 
-    function handleEdit(e){
+    const handleEdit = (e) => {
         e.preventDefault();
         let userEdit = e.target.value;
         setEditReply( {message: userEdit} );
@@ -13,7 +13,7 @@ function EditCommentForm(props) {
     }
     // console.log(editReply)
     
-    async function handleEditSubmit(e){
+    const handleEditSubmit = async(e) =>{ 
         e.preventDefault();
 
     let editReplyData = {
@@ -36,7 +36,7 @@ function EditCommentForm(props) {
     props.loadPage();
     }
     
-    function handleEditCancel(e){
+    const handleEditCancel = (e) => {
         props.submitReply(e)  
     }
 
