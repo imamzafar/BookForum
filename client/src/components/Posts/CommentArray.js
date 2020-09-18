@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 
-function CommentArray(props) {
+const CommentArray = (props) => {
     // const [ myArray, setMyArray] = useState('')
     // let newComment = ( [{...props.comment}] )
 

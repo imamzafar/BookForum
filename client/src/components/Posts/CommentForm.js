@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 
-function CommentForm(props) {
+const CommentForm = (props) => {
     const[ addReply, setAddReply] = useState({comment:''})
     // console.log(props.reply)
     // console.log(props.reply._id)
@@ -8,7 +8,7 @@ function CommentForm(props) {
     let postId = props.reply.postId;
     // console.log(replyId, postId)
 
-    async function updateThread(e){
+    const updateThread = async(e) => {
         e.preventDefault();
         let userComment = e.target.value;
         // console.log(userComment);
@@ -16,7 +16,7 @@ function CommentForm(props) {
     }
     // console.log(addReply);
 
-    async function handleSubmit(e){
+    const handleSubmit = async(e) => {
         e.preventDefault();
         props.submitReply(e, props.idx);
 
@@ -29,7 +29,7 @@ function CommentForm(props) {
             comment: addReply.comment
         }   
 
-        const apiReply = await fetch('/api/comment/', 
+    const apiReply = await fetch('/api/comment/', 
             {   method: 'post',
                 headers: {
                     'Accept': 'application/json, text/plain, */*',
@@ -52,7 +52,7 @@ function CommentForm(props) {
         }     
     }
     
-    function handleCancel(e){
+    const handleCancel = (e) => {
         props.submitReply(e) 
     }
 

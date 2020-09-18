@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { Link, useLocation} from 'react-router-dom';
 
-function Navbar() {
+const Navbar = () => {
     const location = useLocation();
     const [isShown, setShown] = useState(false);
     let showClass = !isShown ? `collapse navbar-collapse`: `collapse navbar-collapse show`;
