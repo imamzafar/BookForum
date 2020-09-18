@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import { Redirect } from 'react-router-dom';
 
-function Registration(){
+const Registration = () => {
     const [ userData, setUserData ] = useState({ name: "", email: "", password: ""});
     const [ isRegistered, setIsRegistered ] = useState( false );
     const [ alertMessage, setAlertMessage ] = useState( { type: "", message: ""} );
@@ -9,12 +9,12 @@ function Registration(){
     const inputEmail = useRef();
     const inputPassword = useRef();
 
-    function handleInputChange( e ){
+    const handleInputChange = (e) => {
         const { id, value } = e.target; 
         setUserData( { ...userData, [id]: value } );
     }
 
-    async function registerUser( e ){
+    const registerUser = async(e) => {
         e.preventDefault();
         
         if( userData.email === "" ) {
