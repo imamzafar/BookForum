@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import { Link, Redirect } from 'react-router-dom';
 export const UserContext = React.createContext();
 
-function LoginPage(){
+const LoginPage = () => {
     // DECLARATIVE FORM OF PROGRAMMING
     const [ userData, setUserData ] = useState({ name: "", email: localStorage.email, password: "", rememberMe: true });
     const [ isLoggedIn, setIsLoggedIn ] = useState( false );
@@ -13,16 +13,16 @@ function LoginPage(){
     const inputEmail = useRef();
     const inputPassword = useRef();
 
-    function handleInputChange( e ){
+    const handleInputChange = ( e ) => {
         const { id, value } = e.target;
         setUserData( { ...userData, [id]: value } );
     }
 
-    function handleCheckbox(){
+    const handleCheckbox = () => {
         setUserData( { ...userData, rememberMe: !userData.rememberMe } );
     }
 
-    async function loginUser( e ){
+    const loginUser = ( e ) => {
         e.preventDefault();
         setUserData({ name: "", email: localStorage.email, password: "", rememberMe: true })
         
