@@ -35,7 +35,7 @@ const Posts = (props) => {
    console.log('location is', location)
    console.log('params is', params)
 
-    async function loadPage(){
+    const loadPage = async () => {
         //get the main post of the page
         const apiGetWalkPost = await fetch(`/api/walkpost/${postId}`).then( result => result.json() )
         // console.log(apiGetWalkPost[0].comment)
@@ -57,25 +57,25 @@ const Posts = (props) => {
     // console.log('the reply result is',replyResult)
     //submitForm for the Post reply
 
-    function submitForm(e){
+    const submitForm = (e) => {
         e.preventDefault();
         setShowForm(false);
         setEditPost(false);
     }
     
     //passing data from child to parent
-    function alertSuccess(msg){
+    const alertSuccess = (msg) => {
         setAlertMessage({type: 'success', message: msg})
         setTimeout( function(){ setAlertMessage( {} ); }, 1000 );
     }
 
     //passing data from child to parent
-    function alertFailure(msg){
+    const alertFailure = (msg) => {
         setAlertMessage({type: 'danger', message: msg})
         setTimeout( function(){ setAlertMessage({}); }, 1000 );
     }
     //submit form for the comments
-    function addBtnReply(e, idx){
+    const addBtnReply = (e, idx) => {
         e.preventDefault();
         if(localStorage.id){
             setReplyForm({id: idx, state: true});
@@ -86,7 +86,7 @@ const Posts = (props) => {
   
     }
 
-    function submitReply(e, idx){
+    const submitReply = (e, idx) => {
         setReplyForm({id: idx, state: false});
         setEditForm({id: idx, state: false});
         e.preventDefault();
@@ -97,7 +97,7 @@ const Posts = (props) => {
     }, [] );
 
     //likes counter
-    async function handleLike(e){
+    const handleLike = async (e) => {
         e.preventDefault(); 
 
         const apiLikeInc = await fetch(`/api/likeInc/${postId}`, 
@@ -111,7 +111,7 @@ const Posts = (props) => {
         loadPage();
     }
 
-    async function deleteBtnPost(e, idx, replyId){
+    const deleteBtnPost = async (e, idx, replyId) => {
         e.preventDefault();
         let id = e.target.id; 
         // console.log(id)
@@ -126,7 +126,7 @@ const Posts = (props) => {
         loadPage();
     }
 
-    function editReply(e, idx){
+    const editReply = (e, idx) => {
         let id = e.target.id;
         if(localStorage.id == id || localStorage.type === 'moderator' || localStorage.type === 'admin'){
             setEditForm({id: idx, state: true});
@@ -136,7 +136,7 @@ const Posts = (props) => {
        
     }
 
-    async function handleDelete(e, id, userId){
+    const handleDelete = async (e, id, userId) => {
         e.preventDefault();
         const apiDeletePost = await fetch(`/api/deletepost/${id}/${userId}`, 
         {   method: 'delete'
@@ -147,7 +147,7 @@ const Posts = (props) => {
         window.location.href="/the-walks";    
     }
 
-    function handleEditPost(e){
+    const handleEditPost = (e) => {
         e.preventDefault();
         setEditPost(true)
     }
