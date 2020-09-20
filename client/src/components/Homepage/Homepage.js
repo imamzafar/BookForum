@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Homepage() {
+const Homepage = () => {
     return (
         <div class="container-fluid">
             <h1>this is the home page</h1>

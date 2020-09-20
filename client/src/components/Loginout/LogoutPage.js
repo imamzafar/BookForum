@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Redirect } from 'react-router-dom';
 
 
-function LogoutPage(){
+const LogoutPage = () => {
     const [ isLoggedOut, setIsLoggedOut ] = useState( false );
 
     useEffect( function(){
@@ -11,7 +11,7 @@ function LogoutPage(){
     }, [] );
 
     // call the api to logout (and clear session)
-    async function logoutRequest(){
+    const logoutRequest = async() => {
         localStorage.id = "";
         localStorage.type = "";
         if(localStorage.email == 'april@test.com'){

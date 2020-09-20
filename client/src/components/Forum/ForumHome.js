@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 // import './Forum/style.css'
 import { Link, useLocation} from 'react-router-dom';
 
-function ForumHome() {
+const ForumHome = () => {
     let location = useLocation();
     const [ walkResult, setWalkResult ] = useState([])
     const [ totalMessages, setTotalMessages ] = useState( '' )
@@ -10,7 +10,7 @@ function ForumHome() {
     const[ lastUpdated, setLastUpdated] = useState('')
     // console.log(location)
 
-    async function loadPage(){
+    const loadPage = async () => {
         const apiGetWalk = await fetch('/api/walkdata').then( result => result.json() )
         apiGetWalk.forEach(element => { 
             element.createdAt = new Date(element.createdAt).toString().substring(4, 15)   
