@@ -7,7 +7,7 @@ import EditCommentForm from './EditCommentForm';
 import EditPost from './EditPost';
 
 
-function Posts(props) {
+const Posts = (props) => {
     const [ walkPost, setWalkPost ] = useState({});
     const [ showForm, setShowForm ] = useState(false);
     const [ replyForm, setReplyForm ] = useState(false);

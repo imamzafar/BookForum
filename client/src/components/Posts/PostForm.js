@@ -1,18 +1,18 @@
 import React, {useState, useEffect} from 'react'
 
-function PostForm(props) {
+const PostFormm = (props) => {
     // console.log(props)
     const[ myPost, setMyPost ] = useState( { reply:""} )
     
         
-    function updatePost(e){
+    const updatePost = (e) => {
         e.preventDefault();
         let post = { reply: e.target.value }
         setMyPost(post)
         // console.log(post);
     }
 
-    async function handleSubmit(e){   
+    const handleSubmit = async (e) => {   
         e.preventDefault();
         props.submitForm(e);    
         let userId = localStorage.id;
@@ -50,7 +50,7 @@ function PostForm(props) {
         }  
     }
 
-    function handleCancel(e){
+    const handleCancel = (e) => {
         props.submitForm(e);  
     }
     // function handleCancel(e){

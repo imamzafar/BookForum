@@ -1,17 +1,17 @@
 import React, {useState} from 'react'
 
-function EditPost(props) {
+const EditPost = (props) => {
     // console.log(props.walkPost)
     const[ editPost, setEditPost ] = useState( {message:props.walkPost.message}  )
 
 
-    function editThread(e){
+    const editThreadm = (e) => {
         e.preventDefault();
         let postEdit = e.target.value;
         setEditPost( {message: postEdit} );
     }
 
-    async function handleSubmit(e){
+    const handleSubmit = async (e) => {
         e.preventDefault();
         let editPostData = {
             postId:props.walkPost._id,
@@ -32,7 +32,7 @@ function EditPost(props) {
     props.loadPage();
     }
 
-    function handleCancel(e){
+    const handleCancel = (e) => {
         
         props.submitForm(e)
         e.preventDefault();
