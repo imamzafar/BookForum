@@ -14,9 +14,10 @@ const Dashboard = () => {
         loadPage();
     }, [] );
 
-    if(localStorage.id == ''){
-        return <Redirect to='/login' />
-    }
+    // if(localStorage.id == ''){
+    //     return <Redirect to='/login' />
+    // }
+    return( localStorage.id == '' ? <Redirect to='/login' />: '')
 
     const loadPage = async() => {
         const apiUserData = await fetch(`/api/userdata/${id}`).then( result => result.json() )
