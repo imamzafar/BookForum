@@ -7,9 +7,12 @@ import ModeratorTable from './ModeratorTable'
 
 const Admin = () => {
 
-    if(localStorage.id == ''){
-        return <Redirect to='/login' />
-    }
+    // if(localStorage.id == ''){
+    //     return <Redirect to='/login' />
+    // }
+    return( localStorage.id == ''? <Redirect to='/login' />: '')
+    
+
 
     return (
         <div class="row">
