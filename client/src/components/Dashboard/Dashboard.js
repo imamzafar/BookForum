@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import { Link, useParams, useLocation, Redirect} from 'react-router-dom';
 
 
-function Dashboard() {
+const Dashboard = () => {
     const [ userData, setUserData] = useState('');
     const[ createdAt, setCreatedAt] = useState('');
     const[ updatedAt, setUpdatedAt] = useState('');
@@ -18,7 +18,7 @@ function Dashboard() {
         return <Redirect to='/login' />
     }
 
-    async function loadPage(){
+    const loadPage = async() => {
         const apiUserData = await fetch(`/api/userdata/${id}`).then( result => result.json() )
         
             let created = new Date(apiUserData.createdAt).toString().substring(4, 15) 

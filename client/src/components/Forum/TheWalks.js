@@ -26,7 +26,7 @@ const TheWalks = () => {
         setTimeout( function(){ setAlertMessage({}); }, 2000 );
     }
 
-    async function loadPage(){
+    const loadPage = () => {
         const apiGetWalk = await fetch('/api/walkdata').then( result => result.json() )
         // console.log(apiGetWalk)
         apiGetWalk.forEach(element => { 
@@ -45,7 +45,7 @@ const TheWalks = () => {
     }
     // console.log(walkResult);
 
-    async function handleSubmit(e){
+    const handleSubmit = async (e) => {
         e.preventDefault();
         let id = localStorage.id;
 

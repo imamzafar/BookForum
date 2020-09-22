@@ -1,11 +1,11 @@
 import React,{useState} from 'react'
 
-function WalkForm(props) {  
+const WalkForm = (props) => {  
     const [myThread, setMyThread] = useState( {title: "", message: ""});
     const [alertMessage, setAlertMessage] = useState( {type: "", message: ""})
        
     
-    function updateThread(e){
+    const updateThread = (e) => {
         e.preventDefault();
        let id = e.target.id;
 
@@ -19,7 +19,7 @@ function WalkForm(props) {
        setMyThread(newThread)
     }
 
-    async function handleSubmit(e){
+    const handleSubmit = (e) => {
         e.preventDefault();
         props.submitThread(e)
         let url = myThread.title
@@ -56,7 +56,7 @@ function WalkForm(props) {
         }  
     }
 
-    function handleCancel(e){
+    const handleCancel = (e) => {
         props.submitThread(e) 
     }
 

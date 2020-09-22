@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react'
 
 
-function TableDiv(props) {
+const TableDiv = (props) =>{
     const[ myOption, setMyOption] = useState('')
-    console.log('the props is', props.users)
+    // console.log('the props is', props.users)
 
     let newUsers = ([...props.users])
     
@@ -12,19 +12,19 @@ function TableDiv(props) {
         element.MemberSince = Math.floor(element.MemberSince)
     
     })
-    console.log(newUsers)
+    // console.log(newUsers)
     // props.users.forEach( element => {
     //     element.memberSince = ( element.createdAt.getTime() - element.updatedAt.getTime() )/( 1000 * 3600 * 24 )
     // })
 
-    function handleChange(e){
+    const handleChange = (e) => {
         e.preventDefault();
         // console.log(e.target.value)
         setMyOption(e.target.value);
     }
-    async function handleSubmit(e){
+    const handleSubmit = async(e) => {
         e.preventDefault();
-        console.log(e.target)
+        // console.log(e.target)
 
         if( myOption == "moderator" || myOption == "admin" ){
             let id = e.target.id;
@@ -52,7 +52,6 @@ function TableDiv(props) {
             .then( result=>result.json()) 
             console.log(apiDeleteUser)
         }
-
     }
     
     return (
