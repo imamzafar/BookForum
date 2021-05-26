@@ -26,7 +26,7 @@ const TheWalks = () => {
         setTimeout( function(){ setAlertMessage({}); }, 2000 );
     }
 
-    const loadPage = () => {
+    const loadPage = async () => {
         const apiGetWalk = await fetch('/api/walkdata').then( result => result.json() )
         // console.log(apiGetWalk)
         apiGetWalk.forEach(element => { 
@@ -75,8 +75,9 @@ const TheWalks = () => {
 
         <div>
   
-         <div style={{textAlign: "center"}}class={alertMessage.type ? `alert alert-${alertMessage.type}` : 'd-hide'  } role="alert" >
-                        {alertMessage.message}
+         <div style={{textAlign: "center"}}
+            class={alertMessage.type ? `alert alert-${alertMessage.type}` : 'd-hide'  } role="alert" >
+            {alertMessage.message}
         </div>
         <div class="container-fluid">
             <div class="row">

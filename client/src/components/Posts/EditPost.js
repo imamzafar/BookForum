@@ -5,7 +5,7 @@ const EditPost = (props) => {
     const[ editPost, setEditPost ] = useState( {message:props.walkPost.message}  )
 
 
-    const editThreadm = (e) => {
+    const editThread = (e) => {
         e.preventDefault();
         let postEdit = e.target.value;
         setEditPost( {message: postEdit} );

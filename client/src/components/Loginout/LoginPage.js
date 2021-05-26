@@ -22,7 +22,7 @@ const LoginPage = () => {
         setUserData( { ...userData, rememberMe: !userData.rememberMe } );
     }
 
-    const loginUser = ( e ) => {
+    const loginUser = async ( e ) => {
         e.preventDefault();
         setUserData({ name: "", email: localStorage.email, password: "", rememberMe: true })
         

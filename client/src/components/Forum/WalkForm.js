@@ -19,7 +19,7 @@ const WalkForm = (props) => {
        setMyThread(newThread)
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         props.submitThread(e)
         let url = myThread.title

@@ -12,18 +12,25 @@ const ForumHome = () => {
 
     const loadPage = async () => {
         const apiGetWalk = await fetch('/api/walkdata').then( result => result.json() )
-        apiGetWalk.forEach(element => { 
-            element.createdAt = new Date(element.createdAt).toString().substring(4, 15)   
-            element.updatedAt = new Date(element.updatedAt).toString().substring(4, 15) 
-        });
-        let total = 0;
-        apiGetWalk.forEach(element => { 
-            total = total + element.userReply.length;
-        });
-        setWalkResult( apiGetWalk);
-        setTotalMessages(total);
-        setLastName( apiGetWalk[0].user.name);
-        setLastUpdated( apiGetWalk[0].updatedAt)
+        console.log('apigetwalk is', apiGetWalk)
+        if (apiGetWalk.length == 0){
+            setLastName('');
+            setLastUpdated('')
+        } else {
+                apiGetWalk.forEach(element => { 
+                    element.createdAt = new Date(element.createdAt).toString().substring(4, 15)   
+                    element.updatedAt = new Date(element.updatedAt).toString().substring(4, 15) 
+                });
+                let total = 0;
+                apiGetWalk.forEach(element => { 
+                    total = total + element.userReply.length;
+                });
+                setWalkResult( apiGetWalk);
+                setTotalMessages(total);
+                setLastName( apiGetWalk[0].user.name);
+                setLastUpdated( apiGetWalk[0].updatedAt)
+            }
+        
 
         }
         // console.log(walkResult)

@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 
-const PostFormm = (props) => {
+const PostForm = (props) => {
     // console.log(props)
     const[ myPost, setMyPost ] = useState( { reply:""} )
     
