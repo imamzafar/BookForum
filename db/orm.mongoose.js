@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 const bcrypt = require ( 'bcrypt' );
 const keys = require('./keys')
-mongoose.connect(process.env.ATLAS_URI, {useNewUrlParser: true});
+mongoose.connect(process.env.ATLAS_URI, {useNewUrlParser: true, useUnifiedTopology: true,
+    useCreateIndex: true});
 // mongoose.connect(process.env.MONGODB_URI, {useNewUrlParser: true});
 
 // ``const uri = `mongodb+srv://xyz:xyz@cluster0.jeuob.mongodb.net/trial?retryWrites=true&w=majority`;``
